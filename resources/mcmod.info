@@ -1,0 +1,15 @@
+[
+{
+  "modid": "morelight",
+  "name": "More Light",
+  "description": "This mod allows adding new lamps",
+  "version": "1.0_release",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Azuxul"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,19 @@
+item.phosphoredust.name=Poudre de phosphore
+
+tile.phosphoreore.name=Minerai de phosphore
+tile.phosphoreblock.name=Block de phosphore
+tile.lightbluelampblock.name=Lampe bleu clair
+tile.greenlampblock.name=Lampe verte
+tile.randomlamp.name=Random Lampe
+tile.nyanlamp.name=Nyan lampe
+
+achievement.GetPhosphoreDust=Obtenir de la poudre de Phosphore!
+achievement.GetPhosphoreDust.desc=Obtenir de la poudre de phosphore avec un minerai de phosphore!
+achievement.CraftingPhosphoreBlock=Fabriquer un block de Phosphore
+achievement.CraftingPhosphoreBlock.desc=Fabriquer un block de phosphore avec 4 poudre phosphore.
+achievement.CraftingLightBlueLampBlock=Lumière bleu clair!
+achievement.CraftingLightBlueLampBlock.desc=Fabriquer une lampe bleu clair.
+achievement.CraftingGreenLampBlock=Lumière verte naturèlle!
+achievement.CraftingGreenLampBlock.desc=Fabriquer une lampe verte.
+achievement.CraftingRandomLamp=Fabriquer une random lampe.
+achievement.CraftingNyanLamp.desc=Fabriquer une nyan lampe!
