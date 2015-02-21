@@ -11,11 +11,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -25,7 +27,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.0_release";
+	public static final String VERSION = "1.1_release";
 	public static final String NAME = "MoreLight";
 	
 	public static Block PhosphoreOre;
@@ -44,8 +46,19 @@ public class MoreLight {
 	public static Achievement CraftingGreenLampBlock;
 	public static Achievement CraftingRandomLamp;
 	public static Achievement CraftingNyanLamp;
+	
+	public static boolean OreGeneration;
 
 	@EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+		
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+		
+		OreGeneration = config.getBoolean("WorldOreGen", Configuration.CATEGORY_GENERAL, true, "PhosphoreOre generation");
+		
+		config.save();
+	}
+	
 	public void init(FMLInitializationEvent event){
 		
 		PhosphoreOre = new PhosphoreOre();
@@ -74,9 +87,6 @@ public class MoreLight {
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
-		//Registry ore
-		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre, 2, 50, 4, 9), 0);
-		
 		//Registry crafting recipe
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreBlock),"XX","XX",'X', new ItemStack(PhosphoreDust));
 		GameRegistry.addShapedRecipe(new ItemStack(LightBlueLampBlock), "AAA", "ABA", "ACA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 3), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(Blocks.redstone_torch));
@@ -88,6 +98,13 @@ public class MoreLight {
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
 		
+	if(OreGeneration){
+		
+		//Registry ore
+		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre, 2, 50, 4, 9), 0);
+	}
+	else
+		System.out.println("MoreLight ore generation is disable !");
 		
 	if(event.getSide().isClient()){
 		
