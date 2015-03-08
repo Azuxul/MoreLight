@@ -1,0 +1,24 @@
+{
+	"versionList": [
+		{
+			"mcVersion":"Minecraft 1.8",
+			"modVersion":"1.1b_release",
+			"changeLog": [
+				"Add config file"
+			],
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/227949-morelight/files/2228987/download",
+			"isDirectLink":"true",
+			"newFileName":""
+		},
+        {
+			"mcVersion":"Minecraft 1.8",
+			"modVersion":"1.2_release",
+			"changeLog": [
+				"Add config file"
+			],
+			"updateURL":"testURL",
+			"isDirectLink":"true",
+			"newFileName":""
+		}
+	]
+}
