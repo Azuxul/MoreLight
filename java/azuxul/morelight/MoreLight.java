@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -27,7 +28,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.1b_release";
+	public static final String VERSION = "1.2_release";
 	public static final String NAME = "MoreLight";
 	
 	public static Block PhosphoreOre;
@@ -137,6 +138,8 @@ public class MoreLight {
 		CraftingNyanLamp = (Achievement) new Achievement("Achievement.CraftingNyanLamp", "CraftingNyanLamp", 6, 0, NyanLamp, CraftingPhosphoreBlock).setSpecial().registerStat();
 		
 		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp}));
+		
+		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");
 		
 	}
 	private void RegistryRenderBlock(String blockName, Block block){
