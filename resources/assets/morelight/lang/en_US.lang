@@ -20,3 +20,5 @@ achievement.CraftingRandomLamp=RANDOM lamp!
 achievement.CraftingRandomLamp.desc=Craft random lamp.
 achievement.CraftingNyanLamp=NYANCAT!
 achievement.CraftingNyanLamp.desc=Craft nyan lamp!
+
+key.ActiveNightVision=ActiveNightVision

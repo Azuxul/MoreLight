@@ -14,7 +14,7 @@ public class PhosphoreOre extends Ore {
 		
 		this.setUnlocalizedName("phosphoreore");
 		this.setHardness(2.5F);
-		this.setHarvestLevel("pickaxe", 1);		
+		this.setHarvestLevel("pickaxe", 1);	
 	}
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {

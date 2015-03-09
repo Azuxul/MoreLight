@@ -2,9 +2,12 @@ package azuxul.morelight;
 
 import java.util.Random;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -12,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
@@ -28,8 +32,10 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.2_release";
+	public static final String VERSION = "1.3_DEV";
 	public static final String NAME = "MoreLight";
+	
+	public static KeyBinding ActiveNightVision;
 	
 	public static Block PhosphoreOre;
 	public static Block PhosphoreBlock;
@@ -40,6 +46,7 @@ public class MoreLight {
 	
 	public static Item PhosphoreDust;
 	public static Item NyanCoreItem;
+	public static Item PhosphoreHelmet;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -49,6 +56,8 @@ public class MoreLight {
 	public static Achievement CraftingNyanLamp;
 	
 	public static boolean OreGeneration;
+	
+	public static boolean NightVision = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -62,7 +71,7 @@ public class MoreLight {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event){
-		
+				
 		PhosphoreOre = new PhosphoreOre();
 		PhosphoreBlock = new PhosphoreBlock();
 		LightBlueLampBlock = new LightBlueLampBlock();
@@ -72,6 +81,7 @@ public class MoreLight {
 		
 		PhosphoreDust = new PhosphoreDust();
 		NyanCoreItem = new NyanCoreItem();
+		PhosphoreHelmet = new PhosphoreHelmet();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -86,6 +96,7 @@ public class MoreLight {
 		//Registry items
 		GameRegistry.registerItem(PhosphoreDust, "phosphoredust");
 		GameRegistry.registerItem(NyanCoreItem, "nyancoreitem");
+		GameRegistry.registerItem(PhosphoreHelmet, "phosphorehelmet");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -99,7 +110,7 @@ public class MoreLight {
 		
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
-		
+				
 	if(OreGeneration){
 		
 		//Registry ore
@@ -109,6 +120,10 @@ public class MoreLight {
 		System.out.println("MoreLight ore generation is disable !");
 		
 	if(event.getSide().isClient()){
+		
+		ActiveNightVision = new KeyBinding("key.ActiveNightVision", Keyboard.KEY_N, "key.categories.gameplay");
+		
+		ClientRegistry.registerKeyBinding(ActiveNightVision);
 		
 		System.out.println("Initialization render");
 		
@@ -128,8 +143,9 @@ public class MoreLight {
 		//Add events
 		FMLCommonHandler.instance().bus().register(new GetEvent());
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
+		FMLCommonHandler.instance().bus().register(new KeyEvent());
 		
-		//Add achievement		
+		//Add achievement
 		GetPhosphoreDust = (Achievement) new Achievement("Achievement.GetPhosphoreDust", "GetPhosphoreDust", 0, 0, new ItemStack(PhosphoreDust), null).registerStat().initIndependentStat();
 		CraftingPhosphoreBlock = (Achievement) new Achievement("Achievement.CraftingPhosphoreBlock", "CraftingPhosphoreBlock", 3, 0, PhosphoreBlock, GetPhosphoreDust).registerStat();
 		CraftingLightBlueLampBlock = (Achievement) new Achievement("Achievement.CraftingLightBlueLampBlock", "CraftingLightBlueLampBlock", 2, 2, LightBlueLampBlock, CraftingPhosphoreBlock).registerStat();
@@ -139,18 +155,19 @@ public class MoreLight {
 		
 		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp}));
 		
+		//Check updates whit VersionChecker
 		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");
 		
 	}
 	private void RegistryRenderBlock(String blockName, Block block){
 		
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(net.minecraft.item.Item.getItemFromBlock(block), 0, new ModelResourceLocation(MoreLight.MODID+":"+blockName, "inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(MoreLight.MODID+":"+blockName, "inventory"));
 		
 	}
 	
 	private void RegistryRenderItem(String itemName, Item item){
 		
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(MoreLight.MODID+":"+itemName, "inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(MoreLight.MODID+ ":" +itemName, "inventory"));
 		
 	}
 	
