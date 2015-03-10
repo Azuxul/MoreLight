@@ -4,6 +4,10 @@ import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
+import azuxul.morelight.blocks.*;
+import azuxul.morelight.blocks.lamp.*;
+import azuxul.morelight.events.*;
+import azuxul.morelight.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -26,7 +30,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-
 @Mod(modid = MoreLight.MODID, version = MoreLight.VERSION, name = MoreLight.NAME)
 
 public class MoreLight {
@@ -46,7 +49,10 @@ public class MoreLight {
 	
 	public static Item PhosphoreDust;
 	public static Item NyanCoreItem;
-	public static Item PhosphoreHelmet;
+	public static Item PhosphoreChunk;
+	public static Item AdvancedPhosphoreChunk;
+	public static Item PhosphoreIronHelmet;
+	public static Item PhosphoreDiamondHelmet;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -58,6 +64,7 @@ public class MoreLight {
 	public static boolean OreGeneration;
 	
 	public static boolean NightVision = false;
+	public static boolean ResetNightVision = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -81,7 +88,10 @@ public class MoreLight {
 		
 		PhosphoreDust = new PhosphoreDust();
 		NyanCoreItem = new NyanCoreItem();
-		PhosphoreHelmet = new PhosphoreHelmet();
+		PhosphoreChunk = new PhosphoreChunk();
+		AdvancedPhosphoreChunk = new AdvancedPhosphoreChunk();
+		PhosphoreIronHelmet = new PhosphoreIronHelmet();
+		PhosphoreDiamondHelmet = new PhosphoreDiamondHelmet();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -96,7 +106,10 @@ public class MoreLight {
 		//Registry items
 		GameRegistry.registerItem(PhosphoreDust, "phosphoredust");
 		GameRegistry.registerItem(NyanCoreItem, "nyancoreitem");
-		GameRegistry.registerItem(PhosphoreHelmet, "phosphorehelmet");
+		GameRegistry.registerItem(PhosphoreChunk, "phosphorechunk");
+		GameRegistry.registerItem(AdvancedPhosphoreChunk, "advancedphosphorechunk");
+		GameRegistry.registerItem(PhosphoreIronHelmet, "phosphoreironhelmet");
+		GameRegistry.registerItem(PhosphoreDiamondHelmet, "phosphorediamondhelmet");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -107,6 +120,10 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(RandomLamp), "ABC", "DXE", "FGH", 'A', new ItemStack(Items.dye, 1, 0), 'B', new ItemStack(Items.dye, 1, 1), 'C', new ItemStack(Items.dye, 1, 2), 'D', new ItemStack(Items.dye, 1, 4), 'E', new ItemStack(Items.dye, 1, 5), 'F', new ItemStack(Items.dye, 1, 11), 'G', new ItemStack(Items.dye, 1, 15), 'H', new ItemStack(Items.dye, 1, 13), 'X', new ItemStack(PhosphoreBlock));
 		GameRegistry.addShapedRecipe(new ItemStack(NyanLamp), "ABA", "ACA", "ABA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 0), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(NyanCoreItem));
 		GameRegistry.addShapedRecipe(new ItemStack(NyanCoreItem), "AAB", "AAB", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 6), 'B', new ItemStack(Blocks.stained_glass_pane, 1, 7));
+		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreChunk), "AAA", "AAA", "AAA", 'A', new ItemStack(PhosphoreDust));
+		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 0, 8262));
+		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreIronHelmet), "A", "B", 'A', new ItemStack(Items.iron_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
+		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);

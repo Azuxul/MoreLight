@@ -1,5 +1,9 @@
 item.phosphoredust.name=Phosphore Dust
 item.nyancoreitem.name=Nyan Core
+item.phosphorechunk.name=Phosphore Chunk
+item.advancedphosphorechunk.name=Advanced Phosphore Chunk
+item.phosphoreironhelmet.name=IronPhosphore Helmet
+item.phosphorediamondhelmet.name=DiamondPhosphore Helmet
 
 tile.phosphoreore.name=Phosphore Ore
 tile.phosphoreblock.name=Block of Phosphore
@@ -21,4 +25,4 @@ achievement.CraftingRandomLamp.desc=Craft random lamp.
 achievement.CraftingNyanLamp=NYANCAT!
 achievement.CraftingNyanLamp.desc=Craft nyan lamp!
 
-key.ActiveNightVision=ActiveNightVision
+key.ActiveNightVision=Active night vision helmet
