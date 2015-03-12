@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -35,7 +36,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.3_DEV";
+	public static final String VERSION = "1.3_release";
 	public static final String NAME = "MoreLight";
 	
 	public static KeyBinding ActiveNightVision;
@@ -53,6 +54,8 @@ public class MoreLight {
 	public static Item AdvancedPhosphoreChunk;
 	public static Item PhosphoreIronHelmet;
 	public static Item PhosphoreDiamondHelmet;
+	public static Item LightingDust;
+	public static Item AdvancedLightingDust;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -60,8 +63,10 @@ public class MoreLight {
 	public static Achievement CraftingGreenLampBlock;
 	public static Achievement CraftingRandomLamp;
 	public static Achievement CraftingNyanLamp;
+	public static Achievement SpawnLightningBolt;
 	
 	public static boolean OreGeneration;
+	public static boolean Hard;
 	
 	public static boolean NightVision = false;
 	public static boolean ResetNightVision = false;
@@ -72,6 +77,7 @@ public class MoreLight {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		
 		OreGeneration = config.getBoolean("WorldOreGen", Configuration.CATEGORY_GENERAL, true, "PhosphoreOre generation");
+		Hard = config.getBoolean("HardMode", Configuration.CATEGORY_GENERAL, false, "Hard recipes");
 		
 		config.save();
 	}
@@ -92,6 +98,8 @@ public class MoreLight {
 		AdvancedPhosphoreChunk = new AdvancedPhosphoreChunk();
 		PhosphoreIronHelmet = new PhosphoreIronHelmet();
 		PhosphoreDiamondHelmet = new PhosphoreDiamondHelmet();
+		LightingDust = new LightingDust();
+		AdvancedLightingDust = new AdvancedLightingDust();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -110,6 +118,8 @@ public class MoreLight {
 		GameRegistry.registerItem(AdvancedPhosphoreChunk, "advancedphosphorechunk");
 		GameRegistry.registerItem(PhosphoreIronHelmet, "phosphoreironhelmet");
 		GameRegistry.registerItem(PhosphoreDiamondHelmet, "phosphorediamondhelmet");
+		GameRegistry.registerItem(LightingDust, "lightingdust");
+		GameRegistry.registerItem(AdvancedLightingDust, "advancedlightingdust");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -124,6 +134,16 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 0, 8262));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreIronHelmet), "A", "B", 'A', new ItemStack(Items.iron_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
+		if(Hard){
+			
+			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.nether_star));
+			GameRegistry.addShapedRecipe(new ItemStack(AdvancedLightingDust), "AAA", "ABA", "AAA", 'A', new ItemStack(Blocks.diamond_block), 'B', new ItemStack(LightingDust));
+		}
+		else{
+			
+			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.skull, 1, 1));
+			GameRegistry.addShapedRecipe(new ItemStack(AdvancedLightingDust), "AAA", "ABA", "AAA", 'A', new ItemStack(Items.diamond), 'B', new ItemStack(LightingDust));
+		}
 		
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
@@ -155,9 +175,14 @@ public class MoreLight {
 		//Rendering items
 		RegistryRenderItem("phosphoredust", PhosphoreDust);
 		RegistryRenderItem("nyancoreitem", NyanCoreItem);
+		RegistryRenderItem("phosphoreironhelmet", PhosphoreIronHelmet);
+		RegistryRenderItem("phosphorediamondhelmet", PhosphoreDiamondHelmet);
+		RegistryRenderItem("lightingdust", LightingDust);
+		RegistryRenderItem("advancedlightingdust", AdvancedLightingDust);
+
 	}
 	
-		//Add events
+		//Registry events
 		FMLCommonHandler.instance().bus().register(new GetEvent());
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new KeyEvent());
@@ -169,8 +194,9 @@ public class MoreLight {
 		CraftingGreenLampBlock = (Achievement) new Achievement("Achievement.CraftingGreenLampBlock", "CraftingGreenLampBlock", 3, 2, GreenLampBlock, CraftingPhosphoreBlock).registerStat();
 		CraftingRandomLamp = (Achievement) new Achievement("Achievement.CraftingRandomLamp", "CraftingRandomLamp", 4, 2, RandomLamp, CraftingPhosphoreBlock).registerStat();
 		CraftingNyanLamp = (Achievement) new Achievement("Achievement.CraftingNyanLamp", "CraftingNyanLamp", 6, 0, NyanLamp, CraftingPhosphoreBlock).setSpecial().registerStat();
+		SpawnLightningBolt = (Achievement) new Achievement("Achievement.SpawnLightningBolt", "SpawnLightningBolt", 0, 2, LightingDust, GetPhosphoreDust).setSpecial().registerStat();
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp}));
+		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt}));
 		
 		//Check updates whit VersionChecker
 		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");

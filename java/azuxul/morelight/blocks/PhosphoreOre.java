@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class PhosphoreOre extends Ore {
@@ -15,7 +16,8 @@ public class PhosphoreOre extends Ore {
 		
 		this.setUnlocalizedName("phosphoreore");
 		this.setHardness(2.5F);
-		this.setHarvestLevel("pickaxe", 1);	
+		this.setHarvestLevel("pickaxe", 1);
+		
 	}
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -29,4 +31,14 @@ public class PhosphoreOre extends Ore {
     {
         return 2 + random.nextInt(3);
     }
+    @Override
+    public int getExpDrop(net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
+    {
+        if (this.getItemDropped(world.getBlockState(pos), RANDOM, fortune) != Item.getItemFromBlock(this))
+        {
+            return 1 + RANDOM.nextInt(2);
+        }
+        return 0;
+    }
+    
 }

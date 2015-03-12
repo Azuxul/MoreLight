@@ -4,6 +4,8 @@ item.phosphorechunk.name=Phosphore Chunk
 item.advancedphosphorechunk.name=Advanced Phosphore Chunk
 item.phosphoreironhelmet.name=IronPhosphore Helmet
 item.phosphorediamondhelmet.name=DiamondPhosphore Helmet
+item.lightingdust.name=Lighting Dust
+item.advancedlightingdust.name=Advanced Lighting Dust
 
 tile.phosphoreore.name=Phosphore Ore
 tile.phosphoreblock.name=Block of Phosphore
@@ -24,5 +26,7 @@ achievement.CraftingRandomLamp=RANDOM lamp!
 achievement.CraftingRandomLamp.desc=Craft random lamp.
 achievement.CraftingNyanLamp=NYANCAT!
 achievement.CraftingNyanLamp.desc=Craft nyan lamp!
+achievement.SpawnLightningBolt=Summon a lightning bolt
+achievement.SpawnLightningBolt.desc=Using the lightning powder to summon lightning bolt!
 
 key.ActiveNightVision=Active night vision helmet
