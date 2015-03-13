@@ -175,6 +175,8 @@ public class MoreLight {
 		//Rendering items
 		RegistryRenderItem("phosphoredust", PhosphoreDust);
 		RegistryRenderItem("nyancoreitem", NyanCoreItem);
+		RegistryRenderItem("phosphorechunk", PhosphoreChunk);
+		RegistryRenderItem("advancedphosphorechunk", AdvancedPhosphoreChunk);
 		RegistryRenderItem("phosphoreironhelmet", PhosphoreIronHelmet);
 		RegistryRenderItem("phosphorediamondhelmet", PhosphoreDiamondHelmet);
 		RegistryRenderItem("lightingdust", LightingDust);

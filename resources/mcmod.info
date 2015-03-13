@@ -2,7 +2,7 @@
 {
   "modid": "morelight",
   "name": "More Light",
-  "description": "This mod allows adding new lamps",
+  "description": "This mod allows adding new lamps, new ore and more stuff",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "http://minecraft.curseforge.com/mc-mods/227949-morelight",

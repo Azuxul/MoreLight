@@ -22,13 +22,18 @@ public class PhosphoreBlock extends Block {
 
 	}
 	
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(){	
 		
 		return false;
 	}
 
+	public boolean isFullCube(){
+		
+		return false;
+	}
+	
 	@SideOnly(Side.CLIENT)
-	public EnumWorldBlockLayer getBlockLayer() {
+	public EnumWorldBlockLayer getBlockLayer(){
 		return EnumWorldBlockLayer.TRANSLUCENT;
 		
 	}
