@@ -7,11 +7,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AdvancedLightingDust extends Item {
 
@@ -24,26 +29,41 @@ public class AdvancedLightingDust extends Item {
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
 		
-		for(int i = 1; i <= 3; i++){
-		
-			Random r = new Random();
-			double x = pos.getX() + r.nextInt(5);
-			double y = pos.getY();
-			double z = pos.getZ() + r.nextInt(5);
+		if(world.getBlockState(pos).getBlock().equals(Blocks.diamond_block)){
 			
-			world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
+			for(int i = 1; i <= 5; i++){
+				
+				world.spawnEntityInWorld(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ()));
+			}
 		}
-		
-		Random r = new Random();
-		if(r.nextInt(50) == 30){
+		else{
 			
-			world.setRainStrength(1.0F);
+			for(int i = 1; i <= 3; i++){
+				
+				Random r = new Random();
+				double x = pos.getX() + r.nextInt(5);
+				double y = pos.getY();
+				double z = pos.getZ() + r.nextInt(5);
+				
+				world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
+			}
+			
+			Random r = new Random();
+			if(r.nextInt(50) == 30){
+				
+				world.setRainStrength(1.0F);
+			}
 		}
 		
 		stack.stackSize --;
 		player.addStat(MoreLight.SpawnLightningBolt, 1);
 		
-		return true;
-		
+		return true;	
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack){
+
+        return true;
+    }
 }

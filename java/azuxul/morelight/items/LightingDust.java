@@ -32,9 +32,7 @@ public class LightingDust extends Item {
 		
 		stack.stackSize --;
 		player.addStat(MoreLight.SpawnLightningBolt, 1);
-		player.travelToDimension(5);
 		
 		return true;
-		
 	}
 }
