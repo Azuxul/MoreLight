@@ -2,14 +2,19 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.8",
-			"modVersion":"1.2_release",
+			"modVersion":"1.3_release",
 			"changeLog": [
-				"Compatibility with Version Checker",
-                "Updated for Forge 11.14.1.1334"
+				"Fix issue #1",
+                "New key, default N",
+                "Add new armor helmet(Night vision if key N activated)",
+                "Add food",
+                "Add lighting dust(spawn lighting bolt on use)",
+                "New items",
+                "FR_fr.lang file updated"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/227949-morelight/files/2229809/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/227949-morelight/files/2230246/download",
 			"isDirectLink":"true",
-			"newFileName":""
+			"newFileName":"MoreLight-1.8-1.3_release"
 		}
 	]
 }
