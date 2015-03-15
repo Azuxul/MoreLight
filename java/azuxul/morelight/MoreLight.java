@@ -36,7 +36,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.3_release";
+	public static final String VERSION = "1.4_release";
 	public static final String NAME = "MoreLight";
 	
 	public static KeyBinding ActiveNightVision;
@@ -47,6 +47,7 @@ public class MoreLight {
 	public static Block GreenLampBlock;
 	public static Block RandomLamp;
 	public static Block NyanLamp;
+	public static Block LightingDiamondBlock;
 	
 	public static Item PhosphoreDust;
 	public static Item NyanCoreItem;
@@ -91,6 +92,7 @@ public class MoreLight {
 		GreenLampBlock = new GreenLampBlock();
 		RandomLamp = new RandomLamp();
 		NyanLamp = new NyanLamp();
+		LightingDiamondBlock = new LightingDiamondBlock();
 		
 		PhosphoreDust = new PhosphoreDust();
 		NyanCoreItem = new NyanCoreItem();
@@ -108,6 +110,7 @@ public class MoreLight {
 		GameRegistry.registerBlock(GreenLampBlock, "greenlampblock");
 		GameRegistry.registerBlock(RandomLamp, "randomlamp");
 		GameRegistry.registerBlock(NyanLamp, "nyanlamp");
+		GameRegistry.registerBlock(LightingDiamondBlock, "lightingdiamondblock");
 		
 		OreDictionary.registerOre("phosphoreore", PhosphoreOre);
 		

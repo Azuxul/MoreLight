@@ -3,6 +3,7 @@ package azuxul.morelight.items;
 import java.util.Random;
 
 import azuxul.morelight.MoreLight;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -35,6 +36,7 @@ public class AdvancedLightingDust extends Item {
 				
 				world.spawnEntityInWorld(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ()));
 			}
+			world.setBlockState(pos, MoreLight.LightingDiamondBlock.getDefaultState());
 		}
 		else{
 			
