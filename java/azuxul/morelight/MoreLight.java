@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -66,8 +67,8 @@ public class MoreLight {
 	public static Achievement CraftingNyanLamp;
 	public static Achievement SpawnLightningBolt;
 	
-	public static boolean OreGeneration;
-	public static boolean Hard;
+	private static boolean OreGeneration;
+	private static boolean Hard;
 	
 	public static boolean NightVision = false;
 	public static boolean ResetNightVision = false;
@@ -134,7 +135,7 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(NyanLamp), "ABA", "ACA", "ABA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 0), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(NyanCoreItem));
 		GameRegistry.addShapedRecipe(new ItemStack(NyanCoreItem), "AAB", "AAB", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 6), 'B', new ItemStack(Blocks.stained_glass_pane, 1, 7));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreChunk), "AAA", "AAA", "AAA", 'A', new ItemStack(PhosphoreDust));
-		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 0, 8262));
+		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 1, 8262));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreIronHelmet), "A", "B", 'A', new ItemStack(Items.iron_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		if(Hard){
@@ -165,7 +166,7 @@ public class MoreLight {
 		
 		ClientRegistry.registerKeyBinding(ActiveNightVision);
 		
-		System.out.println("Initialization render");
+		LogManager.getLogger(MoreLight.NAME).info("Initialization render");
 		
 		//Rendering blocks
 		RegistryRenderBlock("phosphoreore", PhosphoreOre);
@@ -174,6 +175,7 @@ public class MoreLight {
 		RegistryRenderBlock("greenlampblock", GreenLampBlock);
 		RegistryRenderBlock("randomlamp", RandomLamp);
 		RegistryRenderBlock("nyanlamp", NyanLamp);
+		RegistryRenderBlock("lightingdiamondblock", LightingDiamondBlock);
 		
 		//Rendering items
 		RegistryRenderItem("phosphoredust", PhosphoreDust);
@@ -191,6 +193,7 @@ public class MoreLight {
 		FMLCommonHandler.instance().bus().register(new GetEvent());
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new KeyEvent());
+		MinecraftForge.EVENT_BUS.register(new RenderEvent());
 		
 		//Add achievement
 		GetPhosphoreDust = (Achievement) new Achievement("Achievement.GetPhosphoreDust", "GetPhosphoreDust", 0, 0, new ItemStack(PhosphoreDust), null).registerStat().initIndependentStat();

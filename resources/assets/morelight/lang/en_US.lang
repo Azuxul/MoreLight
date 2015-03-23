@@ -13,6 +13,7 @@ tile.lightbluelampblock.name=Light Blue Lamp
 tile.greenlampblock.name=Green Lamp
 tile.randomlamp.name=Random Lamp
 tile.nyanlamp.name=Nyan Lamp
+tile.lightingdiamondblock.name=LightingDiamond Block
 
 achievement.GetPhosphoreDust=Obtain Phosphore dust!
 achievement.GetPhosphoreDust.desc=Obtain phosphore dust with phosphore ore!
