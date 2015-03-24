@@ -7,9 +7,9 @@ import net.minecraftforge.common.util.EnumHelper;
 public class Material {
 	
 	//Armor materials
-	public static ArmorMaterial ironPhosphore = EnumHelper.addArmorMaterial("ironPhosphore", MoreLight.MODID + ":ironPhosphore", 15, new int[]{2, 0, 0, 0}, 9);
-	public static ArmorMaterial diamondPhosphore = EnumHelper.addArmorMaterial("diamondPhosphore", MoreLight.MODID + ":diamondPhosphore", 33, new int[]{3, 0, 0, 0}, 10);
+	public static final ArmorMaterial ironPhosphore = EnumHelper.addArmorMaterial("ironPhosphore", MoreLight.MODID + ":ironPhosphore", 15, new int[]{2, 0, 0, 0}, 9);
+	public static final ArmorMaterial diamondPhosphore = EnumHelper.addArmorMaterial("diamondPhosphore", MoreLight.MODID + ":diamondPhosphore", 33, new int[]{3, 0, 0, 0}, 10);
 	
 	//Tools materials
-	public static ToolMaterial lightingDiamond = EnumHelper.addToolMaterial("lightingDiamond", 4, 100, 6.0F, 5.0F, 14);
+	public static final ToolMaterial lightingDiamond = EnumHelper.addToolMaterial("lightingDiamond", 4, 2237, 10.6F, 7.75F, 14);
 }

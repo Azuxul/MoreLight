@@ -6,6 +6,9 @@ item.phosphoreironhelmet.name=IronPhosphore Helmet
 item.phosphorediamondhelmet.name=DiamondPhosphore Helmet
 item.lightingdust.name=Lighting Dust
 item.advancedlightingdust.name=Advanced Lighting Dust
+item.lightingdiamond.name=LightingDiamond
+item.lightingdiamondpickaxe.name=LightingDiamond Pickaxe
+item.lightingdiamondsword.name=LightingDiamond Sword
 
 tile.phosphoreore.name=Phosphore Ore
 tile.phosphoreblock.name=Block of Phosphore

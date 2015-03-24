@@ -2,12 +2,14 @@ package azuxul.morelight;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
 import org.lwjgl.input.Keyboard;
 
 import azuxul.morelight.blocks.*;
 import azuxul.morelight.blocks.lamp.*;
 import azuxul.morelight.events.*;
 import azuxul.morelight.items.*;
+import azuxul.morelight.items.lightingdiamond.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -58,6 +60,9 @@ public class MoreLight {
 	public static Item PhosphoreDiamondHelmet;
 	public static Item LightingDust;
 	public static Item AdvancedLightingDust;
+	public static Item LightingDiamond;
+	public static Item LD_Pickaxe;
+	public static Item LD_Sword;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -69,6 +74,7 @@ public class MoreLight {
 	
 	private static boolean OreGeneration;
 	private static boolean Hard;
+	private static boolean Cape;
 	
 	public static boolean NightVision = false;
 	public static boolean ResetNightVision = false;
@@ -80,6 +86,7 @@ public class MoreLight {
 		
 		OreGeneration = config.getBoolean("WorldOreGen", Configuration.CATEGORY_GENERAL, true, "PhosphoreOre generation");
 		Hard = config.getBoolean("HardMode", Configuration.CATEGORY_GENERAL, false, "Hard recipes");
+		Cape = config.getBoolean("ActiveCape", Configuration.CATEGORY_GENERAL, false, "Cape is for mod devlopers (in beta testing)");
 		
 		config.save();
 	}
@@ -103,6 +110,9 @@ public class MoreLight {
 		PhosphoreDiamondHelmet = new PhosphoreDiamondHelmet();
 		LightingDust = new LightingDust();
 		AdvancedLightingDust = new AdvancedLightingDust();
+		LightingDiamond = new LightingDiamond();
+		LD_Pickaxe = new LD_Pickaxe();
+		LD_Sword = new LD_Sword();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -124,6 +134,9 @@ public class MoreLight {
 		GameRegistry.registerItem(PhosphoreDiamondHelmet, "phosphorediamondhelmet");
 		GameRegistry.registerItem(LightingDust, "lightingdust");
 		GameRegistry.registerItem(AdvancedLightingDust, "advancedlightingdust");
+		GameRegistry.registerItem(LightingDiamond, "lightingdiamond");
+		GameRegistry.registerItem(LD_Pickaxe, "lightingdiamondpickaxe");
+		GameRegistry.registerItem(LD_Sword, "lightingdiamondsword");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -193,7 +206,8 @@ public class MoreLight {
 		FMLCommonHandler.instance().bus().register(new GetEvent());
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new KeyEvent());
-		MinecraftForge.EVENT_BUS.register(new RenderEvent());
+		if(Cape)
+			MinecraftForge.EVENT_BUS.register(new RenderEvent());
 		
 		//Add achievement
 		GetPhosphoreDust = (Achievement) new Achievement("Achievement.GetPhosphoreDust", "GetPhosphoreDust", 0, 0, new ItemStack(PhosphoreDust), null).registerStat().initIndependentStat();

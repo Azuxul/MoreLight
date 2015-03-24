@@ -42,6 +42,7 @@ public class Cape implements LayerRenderer {
             float f10 = (float)(d0 * d4 - d2 * d3) * 100.0F;
 
             if (f9 < 0.0F) {
+            	
                 f9 = 0.0F;
             }
 
@@ -49,6 +50,7 @@ public class Cape implements LayerRenderer {
             f8 += MathHelper.sin((player.prevDistanceWalkedModified + (player.distanceWalkedModified - player.prevDistanceWalkedModified) * p_177166_4_) * 6.0F) * 32.0F * f11;
 
             if (player.isSneaking()) {
+            	
                 f8 += 25.0F;
             }
 
@@ -58,6 +60,7 @@ public class Cape implements LayerRenderer {
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
             this.playerRenderer.getPlayerModel().func_178728_c(0.0625F);
             GlStateManager.popMatrix();
+            
         }
     }
 	
