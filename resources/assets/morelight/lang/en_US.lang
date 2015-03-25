@@ -18,6 +18,8 @@ tile.randomlamp.name=Random Lamp
 tile.nyanlamp.name=Nyan Lamp
 tile.lightingdiamondblock.name=LightingDiamond Block
 
+enchantment.lightningrain=Lightning Rain
+
 achievement.GetPhosphoreDust=Obtain Phosphore dust!
 achievement.GetPhosphoreDust.desc=Obtain phosphore dust with phosphore ore!
 achievement.CraftingPhosphoreBlock=Craft Phosphore block

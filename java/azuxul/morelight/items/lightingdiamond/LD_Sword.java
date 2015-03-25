@@ -24,9 +24,7 @@ public class LD_Sword extends ItemSword {
 			
 			for(int i = 1; i <= 2; i++){
 				
-				entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));
-				System.out.println(entity.posY);
-				
+				entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));			
 			}			
 		}
 		

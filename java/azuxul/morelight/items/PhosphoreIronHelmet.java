@@ -2,15 +2,12 @@ package azuxul.morelight.items;
 
 import azuxul.morelight.Material;
 import azuxul.morelight.MoreLight;
-import ibxm.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PhosphoreIronHelmet extends ItemArmor {
 	

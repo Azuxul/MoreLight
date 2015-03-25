@@ -3,10 +3,12 @@ package azuxul.morelight;
 import java.util.Random;
 
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 
 import azuxul.morelight.blocks.*;
 import azuxul.morelight.blocks.lamp.*;
+import azuxul.morelight.enchantment.LightningRain;
 import azuxul.morelight.events.*;
 import azuxul.morelight.items.*;
 import azuxul.morelight.items.lightingdiamond.*;
@@ -24,7 +26,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -76,8 +77,12 @@ public class MoreLight {
 	private static boolean Hard;
 	private static boolean Cape;
 	
+	public static int Enchantment_LightningRainID;
+	
 	public static boolean NightVision = false;
 	public static boolean ResetNightVision = false;
+	
+	public static Logger log = LogManager.getLogger(MoreLight.NAME);
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -87,6 +92,7 @@ public class MoreLight {
 		OreGeneration = config.getBoolean("WorldOreGen", Configuration.CATEGORY_GENERAL, true, "PhosphoreOre generation");
 		Hard = config.getBoolean("HardMode", Configuration.CATEGORY_GENERAL, false, "Hard recipes");
 		Cape = config.getBoolean("ActiveCape", Configuration.CATEGORY_GENERAL, false, "Cape is for mod devlopers (in beta testing)");
+		Enchantment_LightningRainID = config.getInt("LightningRain", "Enchantments", 74, 63, 256, "Enchantment ID");
 		
 		config.save();
 	}
@@ -140,6 +146,8 @@ public class MoreLight {
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
+		new LightningRain();
+		
 		//Registry crafting recipe
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreBlock),"XX","XX",'X', new ItemStack(PhosphoreDust));
 		GameRegistry.addShapedRecipe(new ItemStack(LightBlueLampBlock), "AAA", "ABA", "ACA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 3), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(Blocks.redstone_torch));
@@ -151,6 +159,7 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 1, 8262));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreIronHelmet), "A", "B", 'A', new ItemStack(Items.iron_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
+		GameRegistry.addShapedRecipe(new ItemStack(Items.enchanted_book), "ABB", "BBB", "BB", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
 		if(Hard){
 			
 			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.nether_star));
@@ -171,7 +180,7 @@ public class MoreLight {
 		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre, 2, 50, 4, 9), 0);
 	}
 	else
-		System.out.println("MoreLight ore generation is disable !");
+		log.warn("MoreLight ore generation is disable !");
 		
 	if(event.getSide().isClient()){
 		
@@ -179,7 +188,7 @@ public class MoreLight {
 		
 		ClientRegistry.registerKeyBinding(ActiveNightVision);
 		
-		LogManager.getLogger(MoreLight.NAME).info("Initialization render");
+		log.info("Initialization render");
 		
 		//Rendering blocks
 		RegistryRenderBlock("phosphoreore", PhosphoreOre);
