@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class LightningRain extends Enchantment{
@@ -48,6 +49,9 @@ public class LightningRain extends Enchantment{
 			for(int i = 1; i <= level; i++)
 			target.worldObj.spawnEntityInWorld(new EntityLightningBolt(target.worldObj, target.posX, target.posY, target.posZ));
 		}
+		
+		if(user instanceof EntityPlayer)
+			((EntityPlayer) user).addStat(MoreLight.UseEnchantment, 1);
 	}
 	
 	public boolean isAllowedOnBooks() {

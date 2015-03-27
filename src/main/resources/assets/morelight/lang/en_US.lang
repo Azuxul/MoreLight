@@ -9,6 +9,10 @@ item.advancedlightingdust.name=Advanced Lighting Dust
 item.lightingdiamond.name=LightingDiamond
 item.lightingdiamondpickaxe.name=LightingDiamond Pickaxe
 item.lightingdiamondsword.name=LightingDiamond Sword
+item.lightingdiamondaxe.name=LightingDiamond Axe
+item.lightingdiamondshovel.name=LightingDiamond Shovel
+item.lightingdiamondhoe.name=LightingDiamond Hoe
+item.obsidianstick.name=Obsidian Stick
 
 tile.phosphoreore.name=Phosphore Ore
 tile.phosphoreblock.name=Block of Phosphore
@@ -34,5 +38,13 @@ achievement.CraftingNyanLamp=NYANCAT!
 achievement.CraftingNyanLamp.desc=Craft nyan lamp!
 achievement.SpawnLightningBolt=Summon a lightning bolt
 achievement.SpawnLightningBolt.desc=Using the lightning powder to summon lightning bolt!
+achievement.GetLightingDiamondBlock=Transform Diamond Block to LightingDiamond Block
+achievement.GetLightingDiamondBlock.desc=Transform Diamond Block to LightingDiamond Block using Advanced Lighting dust
+achievement.UseEnchantment=Lightning Rain !
+achievement.UseEnchantment.desc=Attack entity with sword enchanted Lightning Rain
+achievement.CraftingLD_Sword=Lighting Sword !
+achievement.CraftingLD_Sword.desc=Construct LightingDiamond sword with LightingDiamond
+achievement.CraftingLD_Pickaxe=Speed lighting mining
+achievement.CraftingLD_Pickaxe.desc=Construct LightingDiamond pickaxe with LightingDiamond
 
 key.ActiveNightVision=Active night vision helmet

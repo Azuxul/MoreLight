@@ -6,9 +6,9 @@ import azuxul.morelight.MoreLight;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -71,4 +71,9 @@ public class AdvancedLightingDust extends Item {
 
         return true;
     }
+    
+	public EnumRarity getRarity(ItemStack stack){
+		
+		return EnumRarity.EPIC;
+	}
 }

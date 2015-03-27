@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
@@ -38,5 +39,10 @@ public class LD_Sword extends ItemSword {
 		}
 		
 		return false;
+	}
+	
+	public EnumRarity getRarity(ItemStack stack){
+		
+		return EnumRarity.RARE;
 	}
 }

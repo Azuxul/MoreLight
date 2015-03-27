@@ -6,6 +6,7 @@ import azuxul.morelight.MoreLight;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -34,5 +35,10 @@ public class LightingDust extends Item {
 		player.addStat(MoreLight.SpawnLightningBolt, 1);
 		
 		return true;
+	}
+	
+	public EnumRarity getRarity(ItemStack stack){
+		
+		return EnumRarity.RARE;
 	}
 }

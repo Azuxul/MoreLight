@@ -23,7 +23,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.DungeonHooks.DungeonMob;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -64,10 +67,12 @@ public class MoreLight {
 	public static Item LightingDust;
 	public static Item AdvancedLightingDust;
 	public static Item LightingDiamond;
+	public static Item ObsidianStick;
 	public static Item LD_Pickaxe;
 	public static Item LD_Sword;
 	public static Item LD_Hoe;
 	public static Item LD_Axe;
+	public static Item LD_Shovel;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -77,6 +82,9 @@ public class MoreLight {
 	public static Achievement CraftingNyanLamp;
 	public static Achievement SpawnLightningBolt;
 	public static Achievement GetLightingDiamondBlock;
+	public static Achievement UseEnchantment;
+	public static Achievement CraftingLD_Sword;
+	public static Achievement CraftingLD_Pickaxe;
 	
 	private static boolean OreGeneration;
 	private static boolean Hard;
@@ -126,6 +134,8 @@ public class MoreLight {
 		LD_Sword = new LD_Sword();
 		LD_Hoe = new LD_Hoe();
 		LD_Axe = new LD_Axe();
+		LD_Shovel = new LD_Shovel();
+		ObsidianStick = new ObsidianStick();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -152,8 +162,11 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Sword, "lightingdiamondsword");
 		GameRegistry.registerItem(LD_Hoe, "lightingdiamondhoe");
 		GameRegistry.registerItem(LD_Axe, "lightingdiamondaxe");
+		GameRegistry.registerItem(LD_Shovel, "lightingdiamondshovel");
+		GameRegistry.registerItem(ObsidianStick, "obsidianstick");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
+		OreDictionary.registerOre("obsidianstick", ObsidianStick);
 		
 		Enchantment LightningRain = new LightningRain();
 				
@@ -170,6 +183,15 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamond, 9), "A", 'A', new ItemStack(LightingDiamondBlock));
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamondBlock), "AAA", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
+		GameRegistry.addShapedRecipe(new ItemStack(ObsidianStick, 2), "A", "A", 'A', new ItemStack(Blocks.obsidian));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Sword), "A", "A", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), "AA ", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), " AA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), "AA ", "AB ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), " AA", " BA", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Pickaxe), "AAA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Shovel), "A", "B", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+
 		if(Hard){
 			
 			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.nether_star));
@@ -205,6 +227,13 @@ public class MoreLight {
 		
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
+		
+		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 4, 8, 3));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Pickaxe, 1, 4, 7, 1));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(PhosphoreIronHelmet, 1, 2, 6, 2));
+		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 3, 8, 3));
 				
 	if(OreGeneration){
 		
@@ -240,6 +269,13 @@ public class MoreLight {
 		RegistryRenderItem("phosphorediamondhelmet", PhosphoreDiamondHelmet);
 		RegistryRenderItem("lightingdust", LightingDust);
 		RegistryRenderItem("advancedlightingdust", AdvancedLightingDust);
+		RegistryRenderItem("lightingdiamond", LightingDiamond);
+		RegistryRenderItem("lightingdiamondsword", LD_Sword);
+		RegistryRenderItem("lightingdiamondhoe", LD_Hoe);
+		RegistryRenderItem("lightingdiamondaxe", LD_Axe);
+		RegistryRenderItem("lightingdiamondpickaxe", LD_Pickaxe);
+		RegistryRenderItem("lightingdiamondshovel", LD_Shovel);
+		RegistryRenderItem("obsidianstick", ObsidianStick);
 
 	}
 	
@@ -259,8 +295,12 @@ public class MoreLight {
 		CraftingNyanLamp = (Achievement) new Achievement("Achievement.CraftingNyanLamp", "CraftingNyanLamp", 6, 0, NyanLamp, CraftingPhosphoreBlock).setSpecial().registerStat();
 		SpawnLightningBolt = (Achievement) new Achievement("Achievement.SpawnLightningBolt", "SpawnLightningBolt", 0, 2, LightingDust, GetPhosphoreDust).setSpecial().registerStat();
 		GetLightingDiamondBlock = (Achievement) new Achievement("Achievement.GetLightingDiamondBlock", "GetLightingDiamondBlock", 0, 4, LightingDiamondBlock, SpawnLightningBolt).setSpecial().registerStat();
+		UseEnchantment = (Achievement) new Achievement("Achievement.UseEnchantment", "UseEnchantment", 0, -2, Items.enchanted_book, null).registerStat().initIndependentStat();
+		CraftingLD_Sword = (Achievement) new Achievement("Achievement.CraftingLD_Sword", "CraftingLD_Sword", -1, 6, LD_Sword, GetLightingDiamondBlock).registerStat();
+		CraftingLD_Pickaxe = (Achievement) new Achievement("Achievement.CraftingLD_Pickaxe", "CraftingLD_Pickaxe", 1, 6, LD_Pickaxe, GetLightingDiamondBlock).registerStat();
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt, GetLightingDiamondBlock}));
+		
+		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt, GetLightingDiamondBlock, UseEnchantment, CraftingLD_Sword, CraftingLD_Pickaxe}));
 		
 		//Check updates whit VersionChecker
 		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");

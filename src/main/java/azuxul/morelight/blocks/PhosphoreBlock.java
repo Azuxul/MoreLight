@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,7 +36,7 @@ public class PhosphoreBlock extends Block {
 	
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer(){
-		return EnumWorldBlockLayer.TRANSLUCENT;
 		
+		return EnumWorldBlockLayer.TRANSLUCENT;	
 	}
 }
