@@ -30,6 +30,8 @@ public class AdvancedLightingDust extends Item {
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
 		
+		player.addStat(MoreLight.SpawnLightningBolt, 1);
+		
 		if(world.getBlockState(pos).getBlock().equals(Blocks.diamond_block)){
 			
 			for(int i = 1; i <= 5; i++){
@@ -37,6 +39,8 @@ public class AdvancedLightingDust extends Item {
 				world.spawnEntityInWorld(new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ()));
 			}
 			world.setBlockState(pos, MoreLight.LightingDiamondBlock.getDefaultState());
+			
+			player.addStat(MoreLight.GetLightingDiamondBlock, 1);
 		}
 		else{
 			
@@ -58,7 +62,6 @@ public class AdvancedLightingDust extends Item {
 		}
 		
 		stack.stackSize --;
-		player.addStat(MoreLight.SpawnLightningBolt, 1);
 		
 		return true;	
 	}

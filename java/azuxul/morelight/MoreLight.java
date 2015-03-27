@@ -16,10 +16,12 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
@@ -64,6 +66,8 @@ public class MoreLight {
 	public static Item LightingDiamond;
 	public static Item LD_Pickaxe;
 	public static Item LD_Sword;
+	public static Item LD_Hoe;
+	public static Item LD_Axe;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -72,6 +76,7 @@ public class MoreLight {
 	public static Achievement CraftingRandomLamp;
 	public static Achievement CraftingNyanLamp;
 	public static Achievement SpawnLightningBolt;
+	public static Achievement GetLightingDiamondBlock;
 	
 	private static boolean OreGeneration;
 	private static boolean Hard;
@@ -119,6 +124,8 @@ public class MoreLight {
 		LightingDiamond = new LightingDiamond();
 		LD_Pickaxe = new LD_Pickaxe();
 		LD_Sword = new LD_Sword();
+		LD_Hoe = new LD_Hoe();
+		LD_Axe = new LD_Axe();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -143,13 +150,15 @@ public class MoreLight {
 		GameRegistry.registerItem(LightingDiamond, "lightingdiamond");
 		GameRegistry.registerItem(LD_Pickaxe, "lightingdiamondpickaxe");
 		GameRegistry.registerItem(LD_Sword, "lightingdiamondsword");
+		GameRegistry.registerItem(LD_Hoe, "lightingdiamondhoe");
+		GameRegistry.registerItem(LD_Axe, "lightingdiamondaxe");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
-		new LightningRain();
-		
+		Enchantment LightningRain = new LightningRain();
+				
 		//Registry crafting recipe
-		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreBlock),"XX","XX",'X', new ItemStack(PhosphoreDust));
+		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreBlock),"AA","AA",'A', new ItemStack(PhosphoreDust));
 		GameRegistry.addShapedRecipe(new ItemStack(LightBlueLampBlock), "AAA", "ABA", "ACA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 3), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(Blocks.redstone_torch));
 		GameRegistry.addShapedRecipe(new ItemStack(GreenLampBlock), "AAA", "ABA", "ACA", 'A', new ItemStack(Blocks.stained_glass_pane, 1, 13), 'B', new ItemStack(PhosphoreBlock), 'C', new ItemStack(Blocks.redstone_torch));
 		GameRegistry.addShapedRecipe(new ItemStack(RandomLamp), "ABC", "DXE", "FGH", 'A', new ItemStack(Items.dye, 1, 0), 'B', new ItemStack(Items.dye, 1, 1), 'C', new ItemStack(Items.dye, 1, 2), 'D', new ItemStack(Items.dye, 1, 4), 'E', new ItemStack(Items.dye, 1, 5), 'F', new ItemStack(Items.dye, 1, 11), 'G', new ItemStack(Items.dye, 1, 15), 'H', new ItemStack(Items.dye, 1, 13), 'X', new ItemStack(PhosphoreBlock));
@@ -159,7 +168,8 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(AdvancedPhosphoreChunk), "AAA", "ABA", "AAA", 'A', new ItemStack(PhosphoreChunk), 'B', new ItemStack(Items.potionitem, 1, 8262));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreIronHelmet), "A", "B", 'A', new ItemStack(Items.iron_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
-		GameRegistry.addShapedRecipe(new ItemStack(Items.enchanted_book), "ABB", "BBB", "BB", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
+		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamond, 9), "A", 'A', new ItemStack(LightingDiamondBlock));
+		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamondBlock), "AAA", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
 		if(Hard){
 			
 			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.nether_star));
@@ -170,6 +180,28 @@ public class MoreLight {
 			GameRegistry.addShapedRecipe(new ItemStack(LightingDust), "ABA", "BCB", "ABA", 'A', new ItemStack(PhosphoreDust), 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Items.skull, 1, 1));
 			GameRegistry.addShapedRecipe(new ItemStack(AdvancedLightingDust), "AAA", "ABA", "AAA", 'A', new ItemStack(Items.diamond), 'B', new ItemStack(LightingDust));
 		}
+		
+		ItemStack book;
+		
+		book = new ItemStack(Items.enchanted_book);
+		book.addEnchantment(LightningRain, 1);
+		GameRegistry.addShapedRecipe(book, "AB", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
+		
+		book = new ItemStack(Items.enchanted_book);
+		book.addEnchantment(LightningRain, 2);
+		GameRegistry.addShapedRecipe(book, "AB", "B ", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
+		
+		book = new ItemStack(Items.enchanted_book);
+		book.addEnchantment(LightningRain, 3);
+		GameRegistry.addShapedRecipe(book, "ABB", "BB ", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
+		
+		book = new ItemStack(Items.enchanted_book);
+		book.addEnchantment(LightningRain, 4);
+		GameRegistry.addShapedRecipe(book, "ABB", "BBB", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
+		
+		book = new ItemStack(Items.enchanted_book);
+		book.addEnchantment(LightningRain, 5);
+		GameRegistry.addShapedRecipe(book, "ABB", "BBB", "BB ", 'A', new ItemStack(Items.book), 'B', new ItemStack(LightingDust));
 		
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
@@ -226,8 +258,9 @@ public class MoreLight {
 		CraftingRandomLamp = (Achievement) new Achievement("Achievement.CraftingRandomLamp", "CraftingRandomLamp", 4, 2, RandomLamp, CraftingPhosphoreBlock).registerStat();
 		CraftingNyanLamp = (Achievement) new Achievement("Achievement.CraftingNyanLamp", "CraftingNyanLamp", 6, 0, NyanLamp, CraftingPhosphoreBlock).setSpecial().registerStat();
 		SpawnLightningBolt = (Achievement) new Achievement("Achievement.SpawnLightningBolt", "SpawnLightningBolt", 0, 2, LightingDust, GetPhosphoreDust).setSpecial().registerStat();
+		GetLightingDiamondBlock = (Achievement) new Achievement("Achievement.GetLightingDiamondBlock", "GetLightingDiamondBlock", 0, 4, LightingDiamondBlock, SpawnLightningBolt).setSpecial().registerStat();
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt}));
+		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt, GetLightingDiamondBlock}));
 		
 		//Check updates whit VersionChecker
 		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");
@@ -244,5 +277,4 @@ public class MoreLight {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(MoreLight.MODID+ ":" +itemName, "inventory"));
 		
 	}
-	
 }

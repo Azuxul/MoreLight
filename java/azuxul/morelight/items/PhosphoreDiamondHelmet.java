@@ -1,5 +1,7 @@
 package azuxul.morelight.items;
 
+import java.util.List;
+
 import azuxul.morelight.Material;
 import azuxul.morelight.MoreLight;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,5 +31,10 @@ public class PhosphoreDiamondHelmet extends ItemArmor {
 			
 		}
 
+	}
+	
+	public void addInformation(ItemStack stack, EntityPlayer player, List text, boolean advenced) {
+		
+		text.add("Active NightVision with N (Default key) key");
 	}
 }

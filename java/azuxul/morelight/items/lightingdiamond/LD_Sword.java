@@ -1,13 +1,17 @@
 package azuxul.morelight.items.lightingdiamond;
 
+import java.util.List;
 import java.util.Random;
 
 import azuxul.morelight.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 
 public class LD_Sword extends ItemSword {
 
@@ -26,6 +30,11 @@ public class LD_Sword extends ItemSword {
 				
 				entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));			
 			}			
+		}
+		
+		if(entity instanceof EntityLiving){
+			
+			((EntityLiving)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 30 + r.nextInt(30), 9));
 		}
 		
 		return false;
