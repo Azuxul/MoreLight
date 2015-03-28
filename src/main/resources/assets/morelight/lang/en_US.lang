@@ -12,6 +12,10 @@ item.lightingdiamondsword.name=LightingDiamond Sword
 item.lightingdiamondaxe.name=LightingDiamond Axe
 item.lightingdiamondshovel.name=LightingDiamond Shovel
 item.lightingdiamondhoe.name=LightingDiamond Hoe
+item.lightingdiamondhelmet.name=LightingDiamond Helmet
+item.lightingdiamondchestplate.name=LightingDiamond Chestplate
+item.lightingdiamondleggings.name=LightingDiamond Leggings
+item.lightingdiamondboots.name=LightingDiamond Boots
 item.obsidianstick.name=Obsidian Stick
 
 tile.phosphoreore.name=Phosphore Ore

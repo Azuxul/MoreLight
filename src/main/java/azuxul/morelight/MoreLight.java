@@ -21,12 +21,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.DungeonHooks.DungeonMob;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -38,6 +38,8 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = MoreLight.MODID, version = MoreLight.VERSION, name = MoreLight.NAME)
@@ -73,6 +75,10 @@ public class MoreLight {
 	public static Item LD_Hoe;
 	public static Item LD_Axe;
 	public static Item LD_Shovel;
+	public static Item LD_Helmet;
+	public static Item LD_Chestplate;
+	public static Item LD_Leggings;
+	public static Item LD_Boots;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -104,7 +110,7 @@ public class MoreLight {
 		
 		OreGeneration = config.getBoolean("WorldOreGen", Configuration.CATEGORY_GENERAL, true, "PhosphoreOre generation");
 		Hard = config.getBoolean("HardMode", Configuration.CATEGORY_GENERAL, false, "Hard recipes");
-		Cape = config.getBoolean("ActiveCape", Configuration.CATEGORY_GENERAL, false, "Cape is for mod devlopers (in beta testing)");
+		Cape = config.getBoolean("ActiveCape", Configuration.CATEGORY_GENERAL, false, "Cape is for mod devlopers (only for client and in beta testing)");
 		Enchantment_LightningRainID = config.getInt("LightningRain", "Enchantments", 74, 63, 256, "Enchantment ID");
 		
 		config.save();
@@ -135,6 +141,10 @@ public class MoreLight {
 		LD_Hoe = new LD_Hoe();
 		LD_Axe = new LD_Axe();
 		LD_Shovel = new LD_Shovel();
+		LD_Helmet = new LD_Armor(0);
+		LD_Chestplate = new LD_Armor(1);
+		LD_Leggings = new LD_Armor(2);
+		LD_Boots = new LD_Armor(3);
 		ObsidianStick = new ObsidianStick();
 
 		//Registry blocks
@@ -163,6 +173,10 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Hoe, "lightingdiamondhoe");
 		GameRegistry.registerItem(LD_Axe, "lightingdiamondaxe");
 		GameRegistry.registerItem(LD_Shovel, "lightingdiamondshovel");
+		GameRegistry.registerItem(LD_Helmet, "lightingdiamondhelmet");
+		GameRegistry.registerItem(LD_Chestplate, "lightingdiamondchestplate");		
+		GameRegistry.registerItem(LD_Leggings, "lightingdiamondleggings");
+		GameRegistry.registerItem(LD_Boots, "lightingdiamondboots");
 		GameRegistry.registerItem(ObsidianStick, "obsidianstick");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
@@ -228,6 +242,7 @@ public class MoreLight {
 		//Registry smelling recipe
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
 		
+		//Chest generation
 		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 4, 8, 3));
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Pickaxe, 1, 4, 7, 1));
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
@@ -276,6 +291,10 @@ public class MoreLight {
 		RegistryRenderItem("lightingdiamondpickaxe", LD_Pickaxe);
 		RegistryRenderItem("lightingdiamondshovel", LD_Shovel);
 		RegistryRenderItem("obsidianstick", ObsidianStick);
+		
+		//Registry client event
+		if(Cape)
+			MinecraftForge.EVENT_BUS.register(new RenderEvent());
 
 	}
 	
@@ -283,8 +302,6 @@ public class MoreLight {
 		FMLCommonHandler.instance().bus().register(new GetEvent());
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		FMLCommonHandler.instance().bus().register(new KeyEvent());
-		if(Cape)
-			MinecraftForge.EVENT_BUS.register(new RenderEvent());
 		
 		//Add achievement
 		GetPhosphoreDust = (Achievement) new Achievement("Achievement.GetPhosphoreDust", "GetPhosphoreDust", 0, 0, new ItemStack(PhosphoreDust), null).registerStat().initIndependentStat();
