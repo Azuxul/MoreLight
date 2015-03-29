@@ -118,7 +118,7 @@ public class MoreLight {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event){
-				
+		
 		PhosphoreOre = new PhosphoreOre();
 		PhosphoreBlock = new PhosphoreBlock();
 		LightBlueLampBlock = new LightBlueLampBlock();
@@ -205,6 +205,10 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), " AA", " BA", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Pickaxe), "AAA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Shovel), "A", "B", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Helmet), "AAA", "A A", 'A', new ItemStack(LightingDiamond));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Chestplate), "A A", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Leggings), "AAA", "A A", "A A", 'A', new ItemStack(LightingDiamond));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Boots), "A A", "A A", 'A', new ItemStack(LightingDiamond));
 
 		if(Hard){
 			
@@ -247,6 +251,7 @@ public class MoreLight {
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Pickaxe, 1, 4, 7, 1));
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
 		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(PhosphoreIronHelmet, 1, 2, 6, 2));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Chestplate, 1, 3, 8, 3));
 		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
 		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 3, 8, 3));
 				

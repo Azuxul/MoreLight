@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -22,11 +23,15 @@ public class PhosphoreIronHelmet extends ItemArmor {
 		this.setUnlocalizedName("phosphoreironhelmet");
 	}
 	
-	public void onArmorTick(World world, EntityPlayer player, ItemStack item){
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack){
 		
-		if(MoreLight.NightVision){
+		if(MoreLight.NightVision /*|| stack.getTagCompound().getBoolean("active")*/){
 			player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 400, 0, true, false));
-			
+			NBTTagCompound tag = new NBTTagCompound();
+			tag.setBoolean("active", true);
+			stack.setTagCompound(tag);
+			System.out.println(stack.getTagCompound().getBoolean("active"));
+		
 		}
 		if(MoreLight.ResetNightVision){
 			player.removePotionEffect(Potion.nightVision.id);
