@@ -52,3 +52,9 @@ achievement.CraftingLD_Pickaxe=Speed lighting mining
 achievement.CraftingLD_Pickaxe.desc=Construct LightingDiamond pickaxe with LightingDiamond
 
 key.ActiveNightVision=Active night vision helmet
+
+info.phosphoreHelmet.key=Active NightVision with N key (Default key)
+info.phosphoreHelmet.enable=NightVision is enable
+info.phosphoreHelmet.disable=NightVision is disable
+
+log.warn.morelightOreGen=MoreLight ore generation is disable !

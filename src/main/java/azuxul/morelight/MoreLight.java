@@ -19,10 +19,12 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.StatCollector;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.AchievementPage;
@@ -131,8 +133,8 @@ public class MoreLight {
 		NyanCoreItem = new NyanCoreItem();
 		PhosphoreChunk = new PhosphoreChunk();
 		AdvancedPhosphoreChunk = new AdvancedPhosphoreChunk();
-		PhosphoreIronHelmet = new PhosphoreIronHelmet();
-		PhosphoreDiamondHelmet = new PhosphoreDiamondHelmet();
+		PhosphoreIronHelmet = new PhosphoreGenericHelmet(Material.ironPhosphore, "phosphoreironhelmet", EnumRarity.UNCOMMON);
+		PhosphoreDiamondHelmet = new PhosphoreGenericHelmet(Material.diamondPhosphore, "phosphorediamondhelmet", EnumRarity.UNCOMMON);
 		LightingDust = new LightingDust();
 		AdvancedLightingDust = new AdvancedLightingDust();
 		LightingDiamond = new LightingDiamond();
@@ -261,15 +263,13 @@ public class MoreLight {
 		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre, 2, 50, 4, 9), 0);
 	}
 	else
-		log.warn("MoreLight ore generation is disable !");
+		log.warn(StatCollector.translateToLocal("log.warn.morelightOreGen"));
 		
 	if(event.getSide().isClient()){
 		
 		ActiveNightVision = new KeyBinding("key.ActiveNightVision", Keyboard.KEY_N, "key.categories.gameplay");
 		
 		ClientRegistry.registerKeyBinding(ActiveNightVision);
-		
-		log.info("Initialization render");
 		
 		//Rendering blocks
 		RegistryRenderBlock("phosphoreore", PhosphoreOre);
