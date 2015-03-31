@@ -16,6 +16,7 @@ item.lightingdiamondhelmet.name=LightingDiamond Helmet
 item.lightingdiamondchestplate.name=LightingDiamond Chestplate
 item.lightingdiamondleggings.name=LightingDiamond Leggings
 item.lightingdiamondboots.name=LightingDiamond Boots
+item.phosphorelightingdiamondhelmet.name=LightingDiamond Phosphore Helmet
 item.obsidianstick.name=Obsidian Stick
 
 tile.phosphoreore.name=Phosphore Ore

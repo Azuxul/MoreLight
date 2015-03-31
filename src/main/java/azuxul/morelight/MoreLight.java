@@ -81,6 +81,7 @@ public class MoreLight {
 	public static Item LD_Chestplate;
 	public static Item LD_Leggings;
 	public static Item LD_Boots;
+	public static Item LD_PhosphoreHelmet;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -147,6 +148,7 @@ public class MoreLight {
 		LD_Chestplate = new LD_Armor(1);
 		LD_Leggings = new LD_Armor(2);
 		LD_Boots = new LD_Armor(3);
+		LD_PhosphoreHelmet = new PhosphoreGenericHelmet(Material.lightingDiamondPhosphore, "phosphorelightingdiamondhelmet", EnumRarity.RARE);
 		ObsidianStick = new ObsidianStick();
 
 		//Registry blocks
@@ -180,6 +182,7 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Leggings, "lightingdiamondleggings");
 		GameRegistry.registerItem(LD_Boots, "lightingdiamondboots");
 		GameRegistry.registerItem(ObsidianStick, "obsidianstick");
+		GameRegistry.registerItem(LD_PhosphoreHelmet, "phosphorelightingdiamondhelmet");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		OreDictionary.registerOre("obsidianstick", ObsidianStick);
@@ -211,6 +214,7 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Chestplate), "A A", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Leggings), "AAA", "A A", "A A", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Boots), "A A", "A A", 'A', new ItemStack(LightingDiamond));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_PhosphoreHelmet), "A", "B", 'A', new ItemStack(LD_Helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 
 		if(Hard){
 			

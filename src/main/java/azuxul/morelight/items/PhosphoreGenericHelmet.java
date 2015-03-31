@@ -21,8 +21,8 @@ import net.minecraft.world.World;
 
 public class PhosphoreGenericHelmet extends ItemArmor {
 	
-	int i = 0;
-	EnumRarity r;
+	private int i = 0;
+	private EnumRarity r;
 	
 	public PhosphoreGenericHelmet(ArmorMaterial material, String name, EnumRarity rarity){
 
@@ -57,7 +57,6 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			
 			if(i == 3)
 				MoreLight.ResetNightVision = false;
-			
 			
 		}
 
