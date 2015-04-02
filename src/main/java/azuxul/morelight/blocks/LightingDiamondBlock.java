@@ -1,10 +1,14 @@
 package azuxul.morelight.blocks;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -14,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LightingDiamondBlock extends Block {
-
+	
 	public LightingDiamondBlock(){
 		
 		super(Material.iron);
@@ -40,11 +44,6 @@ public class LightingDiamondBlock extends Block {
 	public EnumWorldBlockLayer getBlockLayer(){
 		return EnumWorldBlockLayer.TRANSLUCENT;
 		
-	}
-	
-	public EnumRarity getRarity(ItemStack stack){
-		
-		return EnumRarity.RARE;
 	}
 	
 }

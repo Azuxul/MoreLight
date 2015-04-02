@@ -71,7 +71,6 @@ public class MoreLight {
 	public static Item LightingDust;
 	public static Item AdvancedLightingDust;
 	public static Item LightingDiamond;
-	public static Item ObsidianStick;
 	public static Item LD_Pickaxe;
 	public static Item LD_Sword;
 	public static Item LD_Hoe;
@@ -82,6 +81,7 @@ public class MoreLight {
 	public static Item LD_Leggings;
 	public static Item LD_Boots;
 	public static Item LD_PhosphoreHelmet;
+	public static Item NetherStick;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -149,7 +149,7 @@ public class MoreLight {
 		LD_Leggings = new LD_Armor(2);
 		LD_Boots = new LD_Armor(3);
 		LD_PhosphoreHelmet = new PhosphoreGenericHelmet(Material.lightingDiamondPhosphore, "phosphorelightingdiamondhelmet", EnumRarity.RARE);
-		ObsidianStick = new ObsidianStick();
+		NetherStick = new NetherStick();
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -181,11 +181,10 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Chestplate, "lightingdiamondchestplate");		
 		GameRegistry.registerItem(LD_Leggings, "lightingdiamondleggings");
 		GameRegistry.registerItem(LD_Boots, "lightingdiamondboots");
-		GameRegistry.registerItem(ObsidianStick, "obsidianstick");
 		GameRegistry.registerItem(LD_PhosphoreHelmet, "phosphorelightingdiamondhelmet");
+		GameRegistry.registerItem(NetherStick, "netherstick");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
-		OreDictionary.registerOre("obsidianstick", ObsidianStick);
 		
 		Enchantment LightningRain = new LightningRain();
 				
@@ -202,19 +201,19 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(PhosphoreDiamondHelmet), "A", "B", 'A', new ItemStack(Items.diamond_helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamond, 9), "A", 'A', new ItemStack(LightingDiamondBlock));
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamondBlock), "AAA", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
-		GameRegistry.addShapedRecipe(new ItemStack(ObsidianStick, 2), "A", "A", 'A', new ItemStack(Blocks.obsidian));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Sword), "A", "A", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), "AA ", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), " AA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), "AA ", "AB ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), " AA", " BA", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Pickaxe), "AAA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Shovel), "A", "B", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(ObsidianStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Sword), "A", "A", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), "AA ", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), " AA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), "AA ", "AB ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), " AA", " BA", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Pickaxe), "AAA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Shovel), "A", "B", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Helmet), "AAA", "A A", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Chestplate), "A A", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Leggings), "AAA", "A A", "A A", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Boots), "A A", "A A", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_PhosphoreHelmet), "A", "B", 'A', new ItemStack(LD_Helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
+		GameRegistry.addShapedRecipe(new ItemStack(NetherStick, 1), "A", "A", 'A', new ItemStack(Items.netherbrick));
 
 		if(Hard){
 			
@@ -253,13 +252,13 @@ public class MoreLight {
 		GameRegistry.addSmelting(PhosphoreOre, new ItemStack(PhosphoreDust), 0.1F);
 		
 		//Chest generation
-		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 4, 8, 3));
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Pickaxe, 1, 4, 7, 1));
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(PhosphoreIronHelmet, 1, 2, 6, 2));
-		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Chestplate, 1, 3, 8, 3));
-		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(LightingDust, 1, 1, 3, 7));
-		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 1, 3, 8, 3));
+		ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 0, 4, 8, 3));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Pickaxe, 0, 4, 7, 1));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LightingDust, 0, 3, 5, 5));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(PhosphoreIronHelmet, 0, 2, 6, 2));
+		ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(LD_Chestplate, 0, 3, 8, 3));
+		ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(LightingDust, 0, 3, 5, 5));
+		ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(LightingDiamond, 0, 3, 8, 3));
 				
 	if(OreGeneration){
 		
@@ -299,7 +298,8 @@ public class MoreLight {
 		RegistryRenderItem("lightingdiamondaxe", LD_Axe);
 		RegistryRenderItem("lightingdiamondpickaxe", LD_Pickaxe);
 		RegistryRenderItem("lightingdiamondshovel", LD_Shovel);
-		RegistryRenderItem("obsidianstick", ObsidianStick);
+		RegistryRenderItem("phosphorelightingdiamondhelmet", LD_PhosphoreHelmet);
+		RegistryRenderItem("netherstick", NetherStick);
 		
 		//Registry client event
 		if(Cape)

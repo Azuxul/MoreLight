@@ -3,11 +3,11 @@ package azuxul.morelight.items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class ObsidianStick extends Item {
+public class NetherStick extends Item {
 
-	public ObsidianStick() {
+	public NetherStick() {
 		
-		this.setUnlocalizedName("obsidianstick");
+		this.setUnlocalizedName("netherstick");
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 	}
 	

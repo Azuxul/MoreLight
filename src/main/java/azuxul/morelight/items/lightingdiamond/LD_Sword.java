@@ -7,6 +7,7 @@ import azuxul.morelight.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -25,12 +26,16 @@ public class LD_Sword extends ItemSword {
 	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity){
 		
 		Random r = new Random();
-		if(r.nextInt(100) <= 20){
+		
+		if(entity instanceof EntityEnderman == false){
 			
-			for(int i = 1; i <= 2; i++){
+			if(r.nextInt(100) <= 20){
 				
-				entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));			
-			}			
+				for(int i = 1; i <= 2; i++){
+					
+					entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));			
+				}			
+			}
 		}
 		
 		if(entity instanceof EntityLiving){

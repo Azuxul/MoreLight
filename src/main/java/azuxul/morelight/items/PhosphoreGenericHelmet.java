@@ -39,6 +39,10 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			
 			player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 400, 0, true, false));
 			
+			if(player.isInWater()){
+				
+				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 3, 0, true, false));
+			}
 			//setTag to active
 			NBTTagCompound tag = new NBTTagCompound();
 			tag.setBoolean("active", true);
