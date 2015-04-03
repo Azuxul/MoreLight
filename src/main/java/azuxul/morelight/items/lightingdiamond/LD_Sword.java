@@ -7,6 +7,8 @@ import azuxul.morelight.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -14,6 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.StatCollector;
 
 public class LD_Sword extends ItemSword {
 
@@ -27,7 +33,7 @@ public class LD_Sword extends ItemSword {
 		
 		Random r = new Random();
 		
-		if(entity instanceof EntityEnderman == false){
+		if(entity instanceof EntityEnderman == false && entity instanceof EntityMinecart == false && entity instanceof EntityArmorStand == false){
 			
 			if(r.nextInt(100) <= 20){
 				

@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
@@ -23,6 +24,7 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 	
 	private int i = 0;
 	private EnumRarity r;
+	private boolean sendActivetedMsg = true;
 	
 	public PhosphoreGenericHelmet(ArmorMaterial material, String name, EnumRarity rarity){
 
@@ -32,6 +34,11 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 	}
 	
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack){
+		
+		if(stack.hasTagCompound() && stack.getTagCompound().getBoolean("active")){
+			
+			sendActivetedMsg = false;
+		}
 		
 		if((MoreLight.NightVision) || (stack.hasTagCompound() && stack.getTagCompound().getBoolean("active"))){
 			
@@ -48,6 +55,12 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			tag.setBoolean("active", true);
 			stack.setTagCompound(tag);
 			
+			if(player instanceof EntityPlayer && sendActivetedMsg){
+				
+				((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("info.phosphoreHelmet.enable")));
+				sendActivetedMsg = false;
+			}
+				
 		}
 		
 		if(MoreLight.ResetNightVision && i <= 3) {
@@ -59,8 +72,14 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			tag.setBoolean("active", false);
 			stack.setTagCompound(tag);
 			
-			if(i == 3)
+			if(i == 3){
+				
 				MoreLight.ResetNightVision = false;
+				sendActivetedMsg = true;
+				
+				if(player instanceof EntityPlayer)	
+					((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("info.phosphoreHelmet.disable")));
+			}
 			
 		}
 

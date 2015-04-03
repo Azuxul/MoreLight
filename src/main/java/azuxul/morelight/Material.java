@@ -13,5 +13,5 @@ public class Material {
 	public static final ArmorMaterial lightingDiamondArmor = EnumHelper.addArmorMaterial("lightingdiamond", MoreLight.MODID + ":lightingDiamond", 72, new int[]{5, 17, 12, 5}, 15);
 	
 	//Tools materials
-	public static final ToolMaterial lightingDiamond = EnumHelper.addToolMaterial("lightingDiamond", 4, 2037, 10.0F, 7.75F, 14);
+	public static final ToolMaterial lightingDiamond = EnumHelper.addToolMaterial("lightingDiamond", 4, 2037, 11.75F, 6.0F, 14);
 }

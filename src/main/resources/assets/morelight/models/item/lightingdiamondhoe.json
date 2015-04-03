@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/diamond_hoe"
+        "layer0": "morelight:items/lightingdiamondhoe"
     },
     "display": {
         "thirdperson": {
