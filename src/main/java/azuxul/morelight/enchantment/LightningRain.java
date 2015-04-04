@@ -6,9 +6,16 @@ import azuxul.morelight.MoreLight;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.EntityPainting;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -32,9 +39,9 @@ public class LightningRain extends Enchantment{
 		return 0;
 	}
 	
-	public void onEntityDamaged(EntityLivingBase user, Entity target, int level) {
+	public void onEntityDamaged(EntityLivingBase user, Entity entity, int level) {
 		
-		if(target instanceof EntityEnderman == false){
+		if(entity instanceof EntityEnderman == false && entity instanceof EntityMinecart == false && entity instanceof EntityArmorStand == false && entity instanceof EntityItemFrame == false && entity instanceof EntityLeashKnot == false && entity instanceof EntityPainting == false && entity instanceof EntityBoat == false && entity instanceof EntityTNTPrimed == false){
 			
 			Random r = new Random();
 			int random = r.nextInt(100);
@@ -50,7 +57,7 @@ public class LightningRain extends Enchantment{
 					level ++;
 				
 				for(int i = 1; i <= level; i++)
-				target.worldObj.spawnEntityInWorld(new EntityLightningBolt(target.worldObj, target.posX, target.posY, target.posZ));
+				entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY, entity.posZ));
 			}
 		}
 		

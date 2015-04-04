@@ -5,10 +5,15 @@ import java.util.Random;
 
 import azuxul.morelight.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.item.EntityPainting;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -33,14 +38,17 @@ public class LD_Sword extends ItemSword {
 		
 		Random r = new Random();
 		
-		if(entity instanceof EntityEnderman == false && entity instanceof EntityMinecart == false && entity instanceof EntityArmorStand == false){
+		if(entity instanceof EntityEnderman == false && entity instanceof EntityMinecart == false && entity instanceof EntityArmorStand == false && entity instanceof EntityItemFrame == false && entity instanceof EntityLeashKnot == false && entity instanceof EntityPainting == false && entity instanceof EntityBoat == false && entity instanceof EntityTNTPrimed == false){
 			
 			if(r.nextInt(100) <= 20){
 				
+				player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 55 + r.nextInt(10), 1, true, false));
+				
 				for(int i = 1; i <= 2; i++){
 					
-					entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));			
-				}			
+					entity.worldObj.spawnEntityInWorld(new EntityLightningBolt(entity.worldObj, entity.posX, entity.posY - 0.5, entity.posZ));
+					player.addPotionEffect(new PotionEffect(Potion.heal.id, 3, 1, true, false));
+				}		
 			}
 		}
 		

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/diamond_shovel"
+        "layer0": "morelight:items/lightingdiamondshovel"
     },
     "display": {
         "thirdperson": {

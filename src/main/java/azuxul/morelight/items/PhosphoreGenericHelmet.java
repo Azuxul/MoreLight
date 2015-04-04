@@ -3,10 +3,8 @@ package azuxul.morelight.items;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-import akka.util.Helpers;
 import azuxul.morelight.Material;
 import azuxul.morelight.MoreLight;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;

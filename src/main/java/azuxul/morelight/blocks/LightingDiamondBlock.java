@@ -25,7 +25,7 @@ public class LightingDiamondBlock extends Block {
 		this.setUnlocalizedName("lightingdiamondblock");
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setLightLevel(0.5F);
-		this.setHardness(3.0F);
+		this.setHardness(4.0F);
 		this.setResistance(1.5F);
 		this.setHarvestLevel("pickaxe", 3);
 	}
