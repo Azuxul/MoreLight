@@ -1,32 +1,19 @@
 package azuxul.morelight;
 
-import java.util.Random;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Keyboard;
-
-import azuxul.morelight.blocks.*;
-import azuxul.morelight.blocks.lamp.*;
-import azuxul.morelight.enchantment.LightningRain;
-import azuxul.morelight.events.*;
-import azuxul.morelight.items.*;
-import azuxul.morelight.items.lightingdiamond.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,11 +25,36 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
+
+import azuxul.morelight.blocks.LightingDiamondBlock;
+import azuxul.morelight.blocks.PhosphoreBlock;
+import azuxul.morelight.blocks.PhosphoreOre;
+import azuxul.morelight.blocks.lamp.GreenLampBlock;
+import azuxul.morelight.blocks.lamp.LightBlueLampBlock;
+import azuxul.morelight.blocks.lamp.NyanLamp;
+import azuxul.morelight.blocks.lamp.RandomLamp;
+import azuxul.morelight.enchantment.LightningRain;
+import azuxul.morelight.events.CraftingEvent;
+import azuxul.morelight.events.GetEvent;
+import azuxul.morelight.events.KeyEvent;
+import azuxul.morelight.events.RenderEvent;
+import azuxul.morelight.items.AdvancedLightingDust;
+import azuxul.morelight.items.AdvancedPhosphoreChunk;
+import azuxul.morelight.items.LightingDust;
+import azuxul.morelight.items.PhosphoreGenericHelmet;
+import azuxul.morelight.items.lightingdiamond.LD_Armor;
+import azuxul.morelight.items.lightingdiamond.LD_Axe;
+import azuxul.morelight.items.lightingdiamond.LD_Hoe;
+import azuxul.morelight.items.lightingdiamond.LD_Pickaxe;
+import azuxul.morelight.items.lightingdiamond.LD_Shovel;
+import azuxul.morelight.items.lightingdiamond.LD_Sword;
+import azuxul.morelight.items.lightingdiamond.LightingDiamond;
 
 @Mod(modid = MoreLight.MODID, version = MoreLight.VERSION, name = MoreLight.NAME)
 
@@ -82,6 +94,7 @@ public class MoreLight {
 	public static Item LD_Boots;
 	public static Item LD_PhosphoreHelmet;
 	public static Item NetherStick;
+	public static Item LavaCrystal;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -130,9 +143,9 @@ public class MoreLight {
 		NyanLamp = new NyanLamp();
 		LightingDiamondBlock = new LightingDiamondBlock();
 		
-		PhosphoreDust = new PhosphoreDust();
-		NyanCoreItem = new NyanCoreItem();
-		PhosphoreChunk = new PhosphoreChunk();
+		PhosphoreDust = new Item().setUnlocalizedName("phosphoredust").setCreativeTab(CreativeTabs.tabMaterials);
+		NyanCoreItem = new Item().setUnlocalizedName("nyancoreitem").setCreativeTab(CreativeTabs.tabMisc);
+		PhosphoreChunk = new Item().setUnlocalizedName("phosphorechunk").setCreativeTab(CreativeTabs.tabMaterials);
 		AdvancedPhosphoreChunk = new AdvancedPhosphoreChunk();
 		PhosphoreIronHelmet = new PhosphoreGenericHelmet(Material.ironPhosphore, "phosphoreironhelmet", EnumRarity.UNCOMMON);
 		PhosphoreDiamondHelmet = new PhosphoreGenericHelmet(Material.diamondPhosphore, "phosphorediamondhelmet", EnumRarity.UNCOMMON);
@@ -149,7 +162,8 @@ public class MoreLight {
 		LD_Leggings = new LD_Armor(2);
 		LD_Boots = new LD_Armor(3);
 		LD_PhosphoreHelmet = new PhosphoreGenericHelmet(Material.lightingDiamondPhosphore, "phosphorelightingdiamondhelmet", EnumRarity.RARE);
-		NetherStick = new NetherStick();
+		NetherStick = new Item().setUnlocalizedName("netherstick").setCreativeTab(CreativeTabs.tabMaterials);
+		LavaCrystal = new Item().setUnlocalizedName("lavacrystal").setCreativeTab(CreativeTabs.tabMaterials);
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -183,6 +197,7 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Boots, "lightingdiamondboots");
 		GameRegistry.registerItem(LD_PhosphoreHelmet, "phosphorelightingdiamondhelmet");
 		GameRegistry.registerItem(NetherStick, "netherstick");
+		GameRegistry.registerItem(LavaCrystal, "lavacrystal");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -202,7 +217,7 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamond, 9), "A", 'A', new ItemStack(LightingDiamondBlock));
 		GameRegistry.addShapedRecipe(new ItemStack(LightingDiamondBlock), "AAA", "AAA", "AAA", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Sword), "A", "A", "B", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
-		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), "AA ", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
+		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), "AA ", " B ", " B ", 'A', LightingDiamond, 'B', new ItemStack(NetherStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Hoe), " AA", " B ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), "AA ", "AB ", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Axe), " AA", " BA", " B ", 'A', new ItemStack(LightingDiamond), 'B', new ItemStack(NetherStick));
