@@ -2,7 +2,6 @@ package azuxul.morelight.items;
 
 import java.util.Random;
 
-import azuxul.morelight.MoreLight;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import azuxul.morelight.MoreLight;
 
 public class LightingDust extends Item {
 
@@ -22,6 +22,7 @@ public class LightingDust extends Item {
 		this.setMaxStackSize(16);
 	}
 	
+	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
 		
 		Random r = new Random();
@@ -37,6 +38,7 @@ public class LightingDust extends Item {
 		return true;
 	}
 	
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return EnumRarity.RARE;

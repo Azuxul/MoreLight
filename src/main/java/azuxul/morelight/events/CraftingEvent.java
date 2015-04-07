@@ -1,10 +1,10 @@
 package azuxul.morelight.events;
 
-import azuxul.morelight.MoreLight;
 import net.minecraft.block.Block;
 import net.minecraft.stats.AchievementList;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import azuxul.morelight.MoreLight;
 
 public class CraftingEvent {
 

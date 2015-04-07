@@ -1,9 +1,9 @@
 package azuxul.morelight.items.lightingdiamond;
 
-import azuxul.morelight.Material;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import azuxul.morelight.Material;
 
 public class LD_Axe extends ItemAxe {
 
@@ -13,6 +13,7 @@ public class LD_Axe extends ItemAxe {
 		this.setUnlocalizedName("lightingdiamondaxe");
 	}
 	
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return EnumRarity.RARE;

@@ -1,10 +1,7 @@
 package azuxul.morelight.items;
 
-import java.awt.event.KeyEvent;
 import java.util.List;
 
-import azuxul.morelight.Material;
-import azuxul.morelight.MoreLight;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
@@ -13,10 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import azuxul.morelight.MoreLight;
 
 public class PhosphoreGenericHelmet extends ItemArmor {
 	
@@ -31,6 +28,7 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 		this.r = rarity;
 	}
 	
+	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack){
 		
 		if(stack.hasTagCompound() && stack.getTagCompound().getBoolean("active")){
@@ -55,7 +53,7 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			
 			if(player instanceof EntityPlayer && sendActivetedMsg){
 				
-				((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("info.phosphoreHelmet.enable")));
+				player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("info.phosphoreHelmet.enable")));
 				sendActivetedMsg = false;
 			}
 				
@@ -76,13 +74,14 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 				sendActivetedMsg = true;
 				
 				if(player instanceof EntityPlayer)	
-					((EntityPlayer)player).addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("info.phosphoreHelmet.disable")));
+					player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("info.phosphoreHelmet.disable")));
 			}
 			
 		}
 
 	}
 	
+	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean advenced) {
 		
 		info.add(StatCollector.translateToLocal("info.phosphoreHelmet.key"));
@@ -97,11 +96,13 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 		}
 	}
 	
+	@Override
 	public boolean getShareTag() {
 		
 		return true;
 	}
 	
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return r;

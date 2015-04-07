@@ -2,7 +2,6 @@ package azuxul.morelight.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -20,12 +19,14 @@ public class AdvancedPhosphoreChunk extends ItemFood {
 		this.setAlwaysEdible();
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack){
 
         return true;
     }
     
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return EnumRarity.UNCOMMON;

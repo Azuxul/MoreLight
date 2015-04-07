@@ -13,6 +13,7 @@ public class LightingDiamond extends Item {
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 	}
 	
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return EnumRarity.RARE;

@@ -1,9 +1,9 @@
 package azuxul.morelight.items.lightingdiamond;
 
-import azuxul.morelight.Material;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import azuxul.morelight.Material;
 
 public class LD_Armor extends ItemArmor {
 
@@ -32,6 +32,7 @@ public class LD_Armor extends ItemArmor {
 		this.setUnlocalizedName("lightingdiamond" + type);
 	}
 	
+	@Override
 	public EnumRarity getRarity(ItemStack stack){
 		
 		return EnumRarity.RARE;

@@ -1,8 +1,8 @@
 package azuxul.morelight.events;
 
-import azuxul.morelight.MoreLight;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import azuxul.morelight.MoreLight;
 
 public class GetEvent {
 	
