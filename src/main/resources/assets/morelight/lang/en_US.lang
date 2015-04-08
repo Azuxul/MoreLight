@@ -18,6 +18,7 @@ item.lightingdiamondleggings.name=LightingDiamond Leggings
 item.lightingdiamondboots.name=LightingDiamond Boots
 item.phosphorelightingdiamondhelmet.name=LightingDiamond Phosphore Helmet
 item.netherstick.name=Nether Stick
+item.nethercrystal.name=Nether Crystal
 
 tile.phosphoreore.name=Phosphore Ore
 tile.phosphoreblock.name=Block of Phosphore

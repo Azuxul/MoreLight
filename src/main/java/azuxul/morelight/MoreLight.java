@@ -54,7 +54,6 @@ import azuxul.morelight.items.lightingdiamond.LD_Hoe;
 import azuxul.morelight.items.lightingdiamond.LD_Pickaxe;
 import azuxul.morelight.items.lightingdiamond.LD_Shovel;
 import azuxul.morelight.items.lightingdiamond.LD_Sword;
-import azuxul.morelight.items.lightingdiamond.LightingDiamond;
 
 @Mod(modid = MoreLight.MODID, version = MoreLight.VERSION, name = MoreLight.NAME)
 
@@ -94,7 +93,7 @@ public class MoreLight {
 	public static Item LD_Boots;
 	public static Item LD_PhosphoreHelmet;
 	public static Item NetherStick;
-	public static Item LavaCrystal;
+	public static Item NetherCrystal;
 	
 	public static Achievement GetPhosphoreDust;
 	public static Achievement CraftingPhosphoreBlock;
@@ -151,7 +150,7 @@ public class MoreLight {
 		PhosphoreDiamondHelmet = new PhosphoreGenericHelmet(Material.diamondPhosphore, "phosphorediamondhelmet", EnumRarity.UNCOMMON);
 		LightingDust = new LightingDust();
 		AdvancedLightingDust = new AdvancedLightingDust();
-		LightingDiamond = new LightingDiamond();
+		LightingDiamond = new Item().setUnlocalizedName("lightingdiamond").setCreativeTab(CreativeTabs.tabMaterials);
 		LD_Pickaxe = new LD_Pickaxe();
 		LD_Sword = new LD_Sword();
 		LD_Hoe = new LD_Hoe();
@@ -163,7 +162,7 @@ public class MoreLight {
 		LD_Boots = new LD_Armor(3);
 		LD_PhosphoreHelmet = new PhosphoreGenericHelmet(Material.lightingDiamondPhosphore, "phosphorelightingdiamondhelmet", EnumRarity.RARE);
 		NetherStick = new Item().setUnlocalizedName("netherstick").setCreativeTab(CreativeTabs.tabMaterials);
-		LavaCrystal = new Item().setUnlocalizedName("lavacrystal").setCreativeTab(CreativeTabs.tabMaterials);
+		NetherCrystal = new Item().setUnlocalizedName("nethercrystal").setCreativeTab(CreativeTabs.tabMaterials);
 
 		//Registry blocks
 		GameRegistry.registerBlock(PhosphoreOre, "phosphoreore");
@@ -192,12 +191,12 @@ public class MoreLight {
 		GameRegistry.registerItem(LD_Axe, "lightingdiamondaxe");
 		GameRegistry.registerItem(LD_Shovel, "lightingdiamondshovel");
 		GameRegistry.registerItem(LD_Helmet, "lightingdiamondhelmet");
-		GameRegistry.registerItem(LD_Chestplate, "lightingdiamondchestplate");		
+		GameRegistry.registerItem(LD_Chestplate, "lightingdiamondchestplate");
 		GameRegistry.registerItem(LD_Leggings, "lightingdiamondleggings");
 		GameRegistry.registerItem(LD_Boots, "lightingdiamondboots");
 		GameRegistry.registerItem(LD_PhosphoreHelmet, "phosphorelightingdiamondhelmet");
 		GameRegistry.registerItem(NetherStick, "netherstick");
-		GameRegistry.registerItem(LavaCrystal, "lavacrystal");
+		GameRegistry.registerItem(NetherCrystal, "nethercrystal");
 		
 		OreDictionary.registerOre("phosphoredust", PhosphoreDust);
 		
@@ -229,6 +228,7 @@ public class MoreLight {
 		GameRegistry.addShapedRecipe(new ItemStack(LD_Boots), "A A", "A A", 'A', new ItemStack(LightingDiamond));
 		GameRegistry.addShapedRecipe(new ItemStack(LD_PhosphoreHelmet), "A", "B", 'A', new ItemStack(LD_Helmet), 'B', new ItemStack(AdvancedPhosphoreChunk));
 		GameRegistry.addShapedRecipe(new ItemStack(NetherStick, 1), "A", "A", 'A', new ItemStack(Items.netherbrick));
+		GameRegistry.addShapedRecipe(new ItemStack(NetherCrystal), "ABA", "BCB", "ABA", 'A', Items.blaze_rod, 'B', Blocks.glass_pane, 'C', Blocks.obsidian);
 
 		if(Hard){
 			
@@ -313,8 +313,13 @@ public class MoreLight {
 		RegistryRenderItem("lightingdiamondaxe", LD_Axe);
 		RegistryRenderItem("lightingdiamondpickaxe", LD_Pickaxe);
 		RegistryRenderItem("lightingdiamondshovel", LD_Shovel);
+		RegistryRenderItem("lightingdiamondhelmet", LD_Helmet);
+		RegistryRenderItem("lightingdiamondchestplate", LD_Chestplate);
+		RegistryRenderItem("lightingdiamondleggings", LD_Leggings);
+		RegistryRenderItem("lightingdiamondboots", LD_Boots);
 		RegistryRenderItem("phosphorelightingdiamondhelmet", LD_PhosphoreHelmet);
 		RegistryRenderItem("netherstick", NetherStick);
+		RegistryRenderItem("nethercrystal", NetherCrystal);
 		
 		//Registry client event
 		if(Cape)
