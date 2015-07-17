@@ -109,7 +109,7 @@ public class MoreLight {
 	public static boolean NightVision = false;
 	public static boolean ResetNightVision = false;
 	
-	public static Logger log = LogManager.getLogger(MoreLight.NAME);
+	public static final Logger log = LogManager.getLogger(MoreLight.NAME);
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
@@ -271,7 +271,7 @@ public class MoreLight {
 	if(OreGeneration){
 		
 		//Registry ore
-		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre, 2, 50, 4, 9), 0);
+		GameRegistry.registerWorldGenerator(new OreGeneration(PhosphoreOre), 0);
 	}
 	else
 		log.warn(StatCollector.translateToLocal("log.warn.morelightOreGen"));
@@ -339,7 +339,7 @@ public class MoreLight {
 		CraftingLD_Pickaxe = (Achievement) new Achievement("Achievement.CraftingLD_Pickaxe", "CraftingLD_Pickaxe", 1, 6, LD_Pickaxe, GetLightingDiamondBlock).registerStat();
 		
 		
-		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", new Achievement[]{GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt, GetLightingDiamondBlock, UseEnchantment, CraftingLD_Sword, CraftingLD_Pickaxe}));
+		AchievementPage.registerAchievementPage(new AchievementPage("MoreLight", GetPhosphoreDust, CraftingPhosphoreBlock, CraftingLightBlueLampBlock, CraftingGreenLampBlock, CraftingNyanLamp, CraftingRandomLamp, SpawnLightningBolt, GetLightingDiamondBlock, UseEnchantment, CraftingLD_Sword, CraftingLD_Pickaxe));
 		
 		//Check updates whit VersionChecker
 		FMLInterModComms.sendRuntimeMessage(MoreLight.MODID, "VersionChecker", "addVersionCheck", "https://raw.githubusercontent.com/Azuxul/MoreLight/master/version.json");

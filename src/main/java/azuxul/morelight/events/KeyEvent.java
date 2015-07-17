@@ -1,8 +1,8 @@
 package azuxul.morelight.events;
 
+import azuxul.morelight.MoreLight;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import azuxul.morelight.MoreLight;
 
 public class KeyEvent {
 
@@ -11,7 +11,7 @@ public class KeyEvent {
 		 
 		 if(MoreLight.ActiveNightVision.isPressed()){
 			 
-			 if(MoreLight.NightVision == false){
+			 if(!MoreLight.NightVision){
 				 
 				 MoreLight.NightVision = true;
 			 }

@@ -1,7 +1,6 @@
 package azuxul.morelight.items;
 
-import java.util.List;
-
+import azuxul.morelight.MoreLight;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
@@ -13,12 +12,13 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import azuxul.morelight.MoreLight;
+
+import java.util.List;
 
 public class PhosphoreGenericHelmet extends ItemArmor {
 	
 	private int i = 0;
-	private EnumRarity r;
+	private final EnumRarity r;
 	private boolean sendActivetedMsg = true;
 	
 	public PhosphoreGenericHelmet(ArmorMaterial material, String name, EnumRarity rarity){
@@ -51,7 +51,7 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 			tag.setBoolean("active", true);
 			stack.setTagCompound(tag);
 			
-			if(player instanceof EntityPlayer && sendActivetedMsg){
+			if(sendActivetedMsg){
 				
 				player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + StatCollector.translateToLocal("info.phosphoreHelmet.enable")));
 				sendActivetedMsg = false;
@@ -72,9 +72,8 @@ public class PhosphoreGenericHelmet extends ItemArmor {
 				
 				MoreLight.ResetNightVision = false;
 				sendActivetedMsg = true;
-				
-				if(player instanceof EntityPlayer)	
-					player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("info.phosphoreHelmet.disable")));
+
+				player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + StatCollector.translateToLocal("info.phosphoreHelmet.disable")));
 			}
 			
 		}
