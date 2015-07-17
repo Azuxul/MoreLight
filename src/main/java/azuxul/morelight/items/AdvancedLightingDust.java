@@ -1,7 +1,6 @@
 package azuxul.morelight.items;
 
-import java.util.Random;
-
+import azuxul.morelight.MoreLight;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +13,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import azuxul.morelight.MoreLight;
+
+import java.util.Random;
 
 public class AdvancedLightingDust extends Item {
 
@@ -51,12 +51,7 @@ public class AdvancedLightingDust extends Item {
 				
 				world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
 			}
-			
-			Random r = new Random();
-			if(r.nextInt(50) == 30){
-				
-				world.setRainStrength(1.0F);
-			}
+
 		}
 		
 		stack.stackSize --;

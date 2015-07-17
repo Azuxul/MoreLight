@@ -15,16 +15,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class Cape implements LayerRenderer {
 
     private final RenderPlayer playerRenderer;
-	
+
     public Cape(RenderPlayer p_i46123_1_) {
-    	
+
         this.playerRenderer = p_i46123_1_;
     }
-	
+
 	public void doRenderLayer(AbstractClientPlayer player, float p_177166_2_, float p_177166_3_, float p_177166_4_, float p_177166_5_, float p_177166_6_, float p_177166_7_, float p_177166_8_) {
-		
+
 		if (player.hasPlayerInfo() && !player.isInvisible() && player.func_175148_a(EnumPlayerModelParts.CAPE)) {
-			
+
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.playerRenderer.bindTexture(new ResourceLocation("morelight:layer/AzuxulCape.png"));
             GlStateManager.pushMatrix();
@@ -41,7 +41,7 @@ public class Cape implements LayerRenderer {
             float f10 = (float)(d0 * d4 - d2 * d3) * 100.0F;
 
             if (f9 < 0.0F) {
-            	
+
                 f9 = 0.0F;
             }
 
@@ -49,7 +49,7 @@ public class Cape implements LayerRenderer {
             f8 += MathHelper.sin((player.prevDistanceWalkedModified + (player.distanceWalkedModified - player.prevDistanceWalkedModified) * p_177166_4_) * 6.0F) * 32.0F * f11;
 
             if (player.isSneaking()) {
-            	
+
                 f8 += 25.0F;
             }
 
@@ -59,19 +59,19 @@ public class Cape implements LayerRenderer {
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
             this.playerRenderer.getPlayerModel().func_178728_c(0.0625F);
             GlStateManager.popMatrix();
-            
+
         }
     }
-	
+
 	@Override
 	public boolean shouldCombineTextures() {
-		
+
         return false;
     }
 
     @Override
 	public void doRenderLayer(EntityLivingBase p_177141_1_, float p_177141_2_, float p_177141_3_, float p_177141_4_, float p_177141_5_, float p_177141_6_, float p_177141_7_, float p_177141_8_) {
-    	
+
         this.doRenderLayer((AbstractClientPlayer)p_177141_1_, p_177141_2_, p_177141_3_, p_177141_4_, p_177141_5_, p_177141_6_, p_177141_7_, p_177141_8_);
     }
 

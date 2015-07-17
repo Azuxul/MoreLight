@@ -1,5 +1,22 @@
 package azuxul.morelight;
 
+import azuxul.morelight.blocks.LightingDiamondBlock;
+import azuxul.morelight.blocks.PhosphoreBlock;
+import azuxul.morelight.blocks.PhosphoreOre;
+import azuxul.morelight.blocks.lamp.GreenLampBlock;
+import azuxul.morelight.blocks.lamp.LightBlueLampBlock;
+import azuxul.morelight.blocks.lamp.NyanLamp;
+import azuxul.morelight.blocks.lamp.RandomLamp;
+import azuxul.morelight.enchantment.LightningRain;
+import azuxul.morelight.events.CraftingEvent;
+import azuxul.morelight.events.GetEvent;
+import azuxul.morelight.events.KeyEvent;
+import azuxul.morelight.events.RenderEvent;
+import azuxul.morelight.items.AdvancedLightingDust;
+import azuxul.morelight.items.AdvancedPhosphoreChunk;
+import azuxul.morelight.items.LightingDust;
+import azuxul.morelight.items.PhosphoreGenericHelmet;
+import azuxul.morelight.items.lightingdiamond.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -27,40 +44,16 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
-
-import azuxul.morelight.blocks.LightingDiamondBlock;
-import azuxul.morelight.blocks.PhosphoreBlock;
-import azuxul.morelight.blocks.PhosphoreOre;
-import azuxul.morelight.blocks.lamp.GreenLampBlock;
-import azuxul.morelight.blocks.lamp.LightBlueLampBlock;
-import azuxul.morelight.blocks.lamp.NyanLamp;
-import azuxul.morelight.blocks.lamp.RandomLamp;
-import azuxul.morelight.enchantment.LightningRain;
-import azuxul.morelight.events.CraftingEvent;
-import azuxul.morelight.events.GetEvent;
-import azuxul.morelight.events.KeyEvent;
-import azuxul.morelight.events.RenderEvent;
-import azuxul.morelight.items.AdvancedLightingDust;
-import azuxul.morelight.items.AdvancedPhosphoreChunk;
-import azuxul.morelight.items.LightingDust;
-import azuxul.morelight.items.PhosphoreGenericHelmet;
-import azuxul.morelight.items.lightingdiamond.LD_Armor;
-import azuxul.morelight.items.lightingdiamond.LD_Axe;
-import azuxul.morelight.items.lightingdiamond.LD_Hoe;
-import azuxul.morelight.items.lightingdiamond.LD_Pickaxe;
-import azuxul.morelight.items.lightingdiamond.LD_Shovel;
-import azuxul.morelight.items.lightingdiamond.LD_Sword;
 
 @Mod(modid = MoreLight.MODID, version = MoreLight.VERSION, name = MoreLight.NAME)
 
 public class MoreLight {
 	
 	public static final String MODID = "morelight";
-	public static final String VERSION = "1.4_release";
+	public static final String VERSION = "1.5";
 	public static final String NAME = "MoreLight";
 	
 	public static KeyBinding ActiveNightVision;

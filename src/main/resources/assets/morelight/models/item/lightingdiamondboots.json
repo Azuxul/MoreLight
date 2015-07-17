@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "morelight:items/lightingdiamondleggings"
+        "layer0": "morelight:items/lightingdiamondboots"
     },
     "display": {
         "thirdperson": {
