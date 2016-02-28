@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "morelight:randomlamp" }
+  "variants": {
+    "normal": {
+      "model": "morelight:randomlamp"
     }
+  }
 }

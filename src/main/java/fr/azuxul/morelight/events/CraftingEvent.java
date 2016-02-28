@@ -1,0 +1,45 @@
+package fr.azuxul.morelight.events;
+
+import fr.azuxul.morelight.MoreLight;
+import net.minecraft.block.Block;
+import net.minecraft.stats.AchievementList;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+
+public class CraftingEvent {
+
+    @SubscribeEvent
+    public void craftingBlockEvent(PlayerEvent.ItemCraftedEvent event) {
+        if (Block.getBlockFromItem(event.crafting.getItem()) == MoreLight.PhosphoreBlock) {
+            event.player.addStat(MoreLight.CraftingPhosphoreBlock, 1);
+        }
+        if (Block.getBlockFromItem(event.crafting.getItem()) == MoreLight.LightBlueLampBlock) {
+            event.player.addStat(MoreLight.CraftingLightBlueLampBlock, 1);
+        }
+        if (Block.getBlockFromItem(event.crafting.getItem()) == MoreLight.GreenLampBlock) {
+            event.player.addStat(MoreLight.CraftingGreenLampBlock, 1);
+        }
+        if (Block.getBlockFromItem(event.crafting.getItem()) == MoreLight.NyanLamp) {
+            event.player.addStat(MoreLight.CraftingNyanLamp, 1);
+        }
+        if (Block.getBlockFromItem(event.crafting.getItem()) == MoreLight.RandomLamp) {
+            event.player.addStat(MoreLight.CraftingRandomLamp, 1);
+        }
+    }
+
+    @SubscribeEvent
+    public void craftingItemEvent(PlayerEvent.ItemCraftedEvent event) {
+        if (event.crafting.getItem() == MoreLight.LD_Pickaxe) {
+            event.player.addStat(AchievementList.buildPickaxe, 1);
+            event.player.addStat(AchievementList.buildBetterPickaxe, 1);
+            event.player.addStat(MoreLight.CraftingLD_Pickaxe, 1);
+        }
+        if (event.crafting.getItem() == MoreLight.LD_Hoe) {
+            event.player.addStat(AchievementList.buildHoe, 1);
+        }
+        if (event.crafting.getItem() == MoreLight.LD_Sword) {
+            event.player.addStat(AchievementList.buildSword, 1);
+            event.player.addStat(MoreLight.CraftingLD_Sword, 1);
+        }
+    }
+}

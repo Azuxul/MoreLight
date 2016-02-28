@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "morelight:phosphoreore" }
+  "variants": {
+    "normal": {
+      "model": "morelight:phosphoreore"
     }
+  }
 }

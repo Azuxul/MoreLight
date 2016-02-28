@@ -1,25 +1,25 @@
 {
-	"versionList": [
-		{
-			"mcVersion":"Minecraft 1.8",
-			"modVersion":"1.4_release",
-			"changeLog": [
-				"Add NBT tag to Phosphores helmets for save the state (active or not)",
-                		"Add new material LightingDiamond",
-                		"On apply advanced lighting dust on diamond block this transform on lighting diamond block",
-                		"Add nether stick and nether crystal",
-        			"Add LightingDiamond tools",
-                		"Add LightingDiamond armors",
-                		"Add LightningRain (enchantment)",
-                		"Add achievements",
-                		"Add dungeons loots",
-                		"Fix logger bug",
-                		"Test capes",
-                		"..."
-			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/227949-morelight/files/2233388/download",
-			"isDirectLink":"true",
-			"newFileName":"MoreLight-1.8-1.4_release"
-		}
-	]
+  "versionList": [
+    {
+      "mcVersion": "Minecraft 1.8",
+      "modVersion": "1.4_release",
+      "changeLog": [
+        "Add NBT tag to Phosphores helmets for save the state (active or not)",
+        "Add new material LightingDiamond",
+        "On apply advanced lighting dust on diamond block this transform on lighting diamond block",
+        "Add nether stick and nether crystal",
+        "Add LightingDiamond tools",
+        "Add LightingDiamond armors",
+        "Add LightningRain (enchantment)",
+        "Add achievements",
+        "Add dungeons loots",
+        "Fix logger bug",
+        "Test capes",
+        "..."
+      ],
+      "updateURL": "http://minecraft.curseforge.com/mc-mods/227949-morelight/files/2233388/download",
+      "isDirectLink": "true",
+      "newFileName": "MoreLight-1.8-1.4_release"
+    }
+  ]
 }

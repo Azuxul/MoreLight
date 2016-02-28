@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "normal": { "model": "morelight:nyanlamp" }
+  "variants": {
+    "normal": {
+      "model": "morelight:nyanlamp"
     }
+  }
 }
